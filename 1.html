@@ -1,263 +1,932 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WaslaTech - Reliable Telecom Solutions for Companies</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<style>
-/* =============================== RESET & BASE =============================== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WaslaTech - Enterprise Telecom Solutions for Companies">
+    <meta name="keywords" content="telecom, business connectivity, VoIP, enterprise solutions">
+    <meta name="author" content="WaslaTech">
+    <title>WaslaTech - Enterprise Telecom Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+/* ========== CSS VARIABLES & THEME ========== */
 :root {
-    --primary: #4f46e5;
-    --secondary: #6366f1;
-    --accent: #f43f5e;
-    --dark: #1f2937;
+    --primary: #1a3a52;
+    --primary-light: #2a4a62;
+    --primary-dark: #0a2a42;
+    --accent: #70c8ff;
+    --accent-light: #90d8ff;
+    --accent-dark: #50b8ef;
+    --dark: #0c0c0c;
     --light: #f9fafb;
-    --text: #374151;
-    --radius: 16px;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 2.5rem;
+    --spacing-3xl: 3rem;
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+    --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.25);
+    --transition-fast: 150ms ease-in-out;
+    --transition-base: 250ms ease-in-out;
+    --transition-slow: 350ms ease-in-out;
 }
+
+body.dark-mode {
+    --primary: #70c8ff;
+    --primary-light: #90d8ff;
+    --primary-dark: #50b8ef;
+    --accent: #285b82;
+    --accent-light: #2a4a62;
+    --accent-dark: #0a2a42;
+    --dark: #f9fafb;
+    --light: #0c0c0c;
+    --gray-50: #0c0c0c;
+    --gray-100: #1f2937;
+    --gray-200: #374151;
+    --gray-300: #4b5563;
+    --gray-400: #6b7280;
+    --gray-500: #9ca3af;
+    --gray-600: #d1d5db;
+    --gray-700: #e5e7eb;
+    --gray-800: #f3f4f6;
+    --gray-900: #f9fafb;
+}
+
+/* ========== RESET & BASE ========== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    line-height: 1.7;
-    color: var(--text);
-    background: var(--light);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--gray-700);
+    background-color: var(--light);
+    transition: background-color var(--transition-base), color var(--transition-base);
     overflow-x: hidden;
 }
-.container { max-width: 1200px; margin: auto; padding: 0 24px; }
-header {
-    background: rgba(255,255,255,0.85);
+body.dark-mode { background-color: var(--light); color: var(--gray-600); }
+
+h1,h2,h3,h4,h5,h6 { font-weight:700; line-height:1.2; color:var(--primary); margin-bottom:var(--spacing-md); }
+h1{font-size:var(--font-size-5xl);}h2{font-size:var(--font-size-4xl);}h3{font-size:var(--font-size-3xl);}
+h4{font-size:var(--font-size-2xl);}h5{font-size:var(--font-size-xl);}h6{font-size:var(--font-size-lg);}
+
+p { margin-bottom: var(--spacing-md); color: var(--gray-600); }
+a { color: var(--primary); text-decoration: none; transition: color var(--transition-fast); }
+a:hover { color: var(--accent); }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-md); }
+
+/* ========== BUTTONS ========== */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base); font-weight: 600;
+    border: none; border-radius: var(--radius-lg);
+    cursor: pointer; transition: all var(--transition-base);
+    text-decoration: none; white-space: nowrap; gap: var(--spacing-sm);
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary { background-color: var(--primary); color: white; box-shadow: var(--shadow-md); }
+.btn-primary:hover:not(:disabled) { background-color: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-lg); color: white; }
+.btn-secondary { background-color: var(--accent); color: var(--primary); box-shadow: var(--shadow-md); }
+.btn-secondary:hover:not(:disabled) { background-color: var(--accent-light); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.btn-lg { padding: var(--spacing-lg) var(--spacing-2xl); font-size: var(--font-size-lg); }
+.btn-block { width: 100%; }
+
+/* ========== HEADER ========== */
+.header {
+    background: rgba(255,255,255,0.95);
     backdrop-filter: blur(10px);
-    color: var(--dark);
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--gray-200);
+    position: fixed; top:0; left:0; right:0;
+    z-index: 1000; transition: all var(--transition-base);
 }
-nav { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 1.6rem; font-weight: 700; color: var(--primary); }
-.nav-links { display: flex; list-style: none; gap: 2rem; }
-.nav-links a { color: var(--text); text-decoration: none; font-weight: 500; transition: 0.3s; }
-.nav-links a:hover { color: var(--primary); }
-.cta-btn {
-    background: var(--primary); color: white;
-    padding: 0.7rem 1.4rem; border-radius: 999px; border: none;
-    font-weight: 600; cursor: pointer; transition: all 0.3s ease;
-}
-.cta-btn:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(79,70,229,0.3); }
-/* =============================== HERO =============================== */
+body.dark-mode .header { background: rgba(15,23,42,0.95); border-bottom-color: var(--gray-200); }
+
+.navbar { display:flex; align-items:center; justify-content:space-between; padding:var(--spacing-md) 0; gap:var(--spacing-lg); }
+.navbar-brand { display:flex; align-items:center; gap:var(--spacing-sm); font-size:var(--font-size-2xl); font-weight:700; color:var(--primary); text-decoration:none; }
+
+.logo-text { display: none; }
+@media (min-width: 768px) { .logo-text { display: inline; } }
+
+.nav-links { display:none; list-style:none; gap:var(--spacing-xl); flex:1; }
+@media (min-width: 768px) { .nav-links { display: flex; } }
+
+.nav-link { color:var(--gray-700); font-weight:500; transition:color var(--transition-fast); }
+body.dark-mode .nav-link { color: var(--gray-600); }
+.nav-link:hover { color: var(--primary); }
+
+.header-actions { display:flex; align-items:center; gap:var(--spacing-md); }
+
+.mobile-menu-btn { display:flex; flex-direction:column; gap:6px; background:none; border:none; cursor:pointer; padding:var(--spacing-sm); }
+.mobile-menu-btn span { width:24px; height:2px; background-color:var(--primary); transition:all var(--transition-fast); }
+@media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+
+.theme-toggle { background:none; border:none; cursor:pointer; font-size:var(--font-size-lg); color:var(--primary); transition:color var(--transition-fast); padding:var(--spacing-sm); }
+.theme-toggle:hover { color: var(--accent); }
+
+/* ========== HERO ========== */
 .hero {
-    background: linear-gradient(135deg, #4f46e5, #6366f1);
-    height: 100vh; display: flex; align-items: center;
-    text-align: center; color: white; margin-top: 70px; padding: 0 20px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white; padding: 120px var(--spacing-md) var(--spacing-3xl);
+    margin-top: 70px; text-align: center; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
 }
-.hero h1 { font-size: 3.2rem; margin-bottom: 1rem; font-weight: 700; animation: fadeInUp 0.8s ease; }
-.hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; animation: fadeInUp 1s ease; }
-/* =============================== PLANS =============================== */
-.plans { padding: 100px 0; background: var(--light); }
-.section-title { text-align: center; font-size: 2.3rem; margin-bottom: 3rem; font-weight: 700; color: var(--dark); }
-.plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-.plan-card {
-    background: white; padding: 2rem; border-radius: var(--radius);
-    text-align: center; border: 1px solid #e5e7eb; transition: all 0.3s ease; position: relative;
+.hero-content { max-width: 800px; animation: fadeInUp 0.8s ease-out; }
+.hero-title { font-size: var(--font-size-5xl); color: white; margin-bottom: var(--spacing-lg); line-height: 1.1; }
+.hero-subtitle { font-size: var(--font-size-xl); color: rgba(255,255,255,0.9); margin-bottom: var(--spacing-2xl); }
+.hero-actions { display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 768px) {
+    .hero { padding: 100px var(--spacing-md) var(--spacing-2xl); }
+    .hero-title { font-size: var(--font-size-3xl); }
+    .hero-subtitle { font-size: var(--font-size-base); }
+    .hero-actions { flex-direction: column; }
 }
-.plan-card:hover { transform: translateY(-6px); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
-.plan-icon { font-size: 3rem; margin-bottom: 1rem; color: var(--primary); }
-.plan-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--dark); }
-.price { font-size: 2.2rem; font-weight: bold; color: var(--primary); margin-bottom: 1rem; }
-.features { list-style: none; margin-bottom: 1.5rem; }
-.features li { padding: 0.4rem 0; font-size: 1rem; color: #6b7280; }
-.plan-card.popular { border: 2px solid var(--primary); transform: scale(1.03); }
-.age-badge {
-    position: absolute; top: 15px; right: 15px;
-    background: var(--accent); color: white;
-    padding: 0.4rem 0.9rem; border-radius: 999px;
-    font-size: 0.8rem; font-weight: 600;
+
+/* ========== SECTIONS ========== */
+section { padding: var(--spacing-3xl) 0; }
+.section-title { font-size:var(--font-size-4xl); text-align:center; margin-bottom:var(--spacing-lg); color:var(--primary); }
+.section-subtitle { text-align:center; color:var(--gray-600); font-size:var(--font-size-lg); margin-bottom:var(--spacing-2xl); max-width:600px; margin-left:auto; margin-right:auto; }
+
+/* ========== ABOUT ========== */
+.about { background-color: var(--gray-50); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--spacing-3xl); align-items:center; }
+.about-cards { display:flex; flex-direction:column; gap:var(--spacing-lg); }
+.about-card { background:white; padding:var(--spacing-lg); border-radius:var(--radius-lg); border:1px solid var(--gray-200); transition:all var(--transition-base); box-shadow:var(--shadow-sm); }
+body.dark-mode .about-card { background:var(--gray-100); border-color:var(--gray-200); }
+.about-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--accent); }
+.card-icon { width:50px; height:50px; background:linear-gradient(135deg,var(--primary),var(--accent)); border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center; color:white; font-size:var(--font-size-2xl); margin-bottom:var(--spacing-md); }
+.about-card h4 { color:var(--primary); margin-bottom:var(--spacing-sm); }
+.about-card p { font-size:var(--font-size-sm); color:var(--gray-600); margin-bottom:0; }
+@media (max-width: 768px) { .about-grid { grid-template-columns:1fr; gap:var(--spacing-2xl); } }
+
+/* ========== FOUNDERS ========== */
+.founders { background: var(--gray-50); }
+.founders-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:var(--spacing-2xl); }
+.founder-card { background:white; padding:var(--spacing-xl); border-radius:var(--radius-xl); text-align:center; transition:var(--transition-base); box-shadow:var(--shadow-md); animation:fadeInUp 0.8s ease; }
+body.dark-mode .founder-card { background: var(--gray-100); }
+.founder-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-xl); }
+.founder-card img { width:110px; height:150px; border-radius:50%; object-fit:cover; }
+.founder-card h3 { color:var(--primary); margin-bottom:5px; }
+.role { color:var(--accent); font-weight:600; margin-bottom:var(--spacing-sm); }
+.socials { margin-top:var(--spacing-md); }
+.socials i { font-size:20px; color:var(--primary); cursor:pointer; transition:0.3s; }
+.socials i:hover { color:var(--accent); }
+
+/* ========== PLANS ========== */
+.plans { background-color: white; }
+body.dark-mode .plans { background-color: var(--gray-50); }
+.plans-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:var(--spacing-2xl); }
+.plan-card { background:white; border:2px solid var(--gray-200); border-radius:var(--radius-xl); padding:var(--spacing-2xl); text-align:center; transition:all var(--transition-base); position:relative; display:flex; flex-direction:column; box-shadow:var(--shadow-md); }
+body.dark-mode .plan-card { background:var(--gray-100); border-color:var(--gray-200); }
+.plan-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-xl); }
+.plan-card-popular { border-color:var(--primary); transform:scale(1.05); }
+.plan-card-popular:hover { transform:scale(1.05) translateY(-8px); }
+.plan-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--primary); color:white; padding:var(--spacing-sm) var(--spacing-lg); border-radius:var(--radius-full); font-size:var(--font-size-sm); font-weight:600; }
+.popular-badge { background:linear-gradient(135deg,var(--primary),var(--accent)); }
+.plan-icon { font-size:var(--font-size-5xl); color:var(--primary); margin:var(--spacing-lg) 0; }
+.plan-name { font-size:var(--font-size-2xl); color:var(--primary); margin-bottom:var(--spacing-md); }
+.plan-price { display:flex; align-items:baseline; justify-content:center; gap:var(--spacing-sm); margin-bottom:var(--spacing-lg); }
+.price-amount { font-size:var(--font-size-5xl); font-weight:700; color:var(--primary); }
+.price-period { color:var(--gray-600); font-size:var(--font-size-base); }
+.plan-features { list-style:none; margin:var(--spacing-lg) 0; flex-grow:1; text-align:left; }
+.plan-features li { padding:var(--spacing-sm) 0; color:var(--gray-600); display:flex; align-items:center; gap:var(--spacing-sm); }
+.plan-features i { color:var(--accent); font-size:var(--font-size-lg); }
+@media (max-width: 768px) { .plan-card-popular { transform:scale(1); } .plan-card-popular:hover { transform:translateY(-8px); } }
+
+/* ========== FEATURES ========== */
+.features { background-color: var(--gray-50); }
+.features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:var(--spacing-2xl); }
+.feature-item { background:white; padding:var(--spacing-2xl); border-radius:var(--radius-lg); text-align:center; transition:all var(--transition-base); box-shadow:var(--shadow-sm); }
+body.dark-mode .feature-item { background: var(--gray-100); }
+.feature-item:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.feature-icon { width:60px; height:60px; background:linear-gradient(135deg,var(--primary),var(--accent)); border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center; color:white; font-size:var(--font-size-2xl); margin:0 auto var(--spacing-lg); }
+.feature-item h4 { color:var(--primary); margin-bottom:var(--spacing-md); }
+.feature-item p { color:var(--gray-600); font-size:var(--font-size-sm); margin-bottom:0; }
+
+/* ========== CONTACT ========== */
+.contact { background-color: white; }
+body.dark-mode .contact { background-color: var(--gray-50); }
+.contact-wrapper { display:grid; grid-template-columns:1fr 1fr; gap:var(--spacing-3xl); align-items:start; }
+.contact-info { display:flex; flex-direction:column; gap:var(--spacing-2xl); }
+.info-item { display:flex; gap:var(--spacing-lg); padding:var(--spacing-lg); background:var(--gray-50); border-radius:var(--radius-lg); border:1px solid var(--gray-200); }
+body.dark-mode .info-item { background: var(--gray-100); }
+.info-icon { width:50px; height:50px; background:linear-gradient(135deg,var(--primary),var(--accent)); border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center; color:white; font-size:var(--font-size-xl); flex-shrink:0; }
+.info-item h4 { color:var(--primary); margin-bottom:var(--spacing-sm); }
+.info-item p { margin-bottom:var(--spacing-xs); font-size:var(--font-size-sm); }
+.text-muted { color:var(--gray-500); font-size:var(--font-size-xs); }
+@media (max-width: 768px) { .contact-wrapper { grid-template-columns:1fr; } }
+
+/* ========== FORMS ========== */
+.contact-form { background:white; padding:var(--spacing-2xl); border-radius:var(--radius-lg); border:1px solid var(--gray-200); box-shadow:var(--shadow-md); }
+body.dark-mode .contact-form { background:var(--gray-100); border-color:var(--gray-200); }
+.form-group { margin-bottom:var(--spacing-lg); }
+.form-group label { display:block; font-weight:600; color:var(--primary); margin-bottom:var(--spacing-sm); font-size:var(--font-size-sm); }
+.form-input { width:100%; padding:var(--spacing-md); border:1px solid var(--gray-300); border-radius:var(--radius-md); font-family:inherit; font-size:var(--font-size-base); transition:all var(--transition-fast); background-color:white; color:var(--gray-900); }
+body.dark-mode .form-input { background-color:var(--gray-200); border-color:var(--gray-300); color:var(--gray-900); }
+.form-input:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(26,58,82,0.1); }
+.form-input::placeholder { color: var(--gray-400); }
+.form-note { font-size:var(--font-size-sm); color:var(--gray-600); text-align:center; margin-top:var(--spacing-md); }
+.error-message { display:block; color:var(--error); font-size:var(--font-size-sm); margin-top:var(--spacing-xs); }
+
+/* ========== AUTH SECTION ========== */
+.auth-section {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    padding: var(--spacing-3xl) 0;
 }
-/* =============================== FEATURES =============================== */
-.features-section { padding: 100px 0; background: white; }
-.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
-.feature-item { text-align: center; padding: 1.5rem; }
-.feature-item i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
-.feature-item h4 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--dark); }
-/* =============================== ABOUT =============================== */
-.about-section { padding: 100px 0; background: #ffffff; }
-.about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; }
-.about-text h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--dark); }
-.about-text p { margin-bottom: 1rem; color: #6b7280; font-size: 1.05rem; }
-.about-cards { display: flex; flex-direction: column; gap: 1.5rem; }
-.about-card { background: var(--light); padding: 1.5rem; border-radius: var(--radius); border: 1px solid #e5e7eb; transition: 0.3s; }
-.about-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-.about-card i { font-size: 1.8rem; color: var(--primary); margin-bottom: 0.5rem; }
-.about-card h4 { margin-bottom: 0.3rem; color: var(--dark); }
-/* =============================== FOOTER =============================== */
-footer { background: var(--dark); color: #d1d5db; text-align: center; padding: 2.5rem 0; }
-.social-links { margin: 1.5rem 0; }
-.social-links a { color: #d1d5db; font-size: 1.3rem; margin: 0 10px; transition: 0.3s; }
-.social-links a:hover { color: white; }
-/* =============================== ANIMATIONS =============================== */
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
-/* =============================== RESPONSIVE =============================== */
-@media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2.2rem; } .plans-grid { grid-template-columns: 1fr; } .about-grid { grid-template-columns: 1fr; } }
-/* =============================== DARK MODE =============================== */
-body.dark-mode { --primary:#818cf8; --secondary:#a5b4fc; --accent:#fb7185; --dark:#0c0c0c; --light:#021217; --text:#faf8f8; background: var(--light); }
-body.dark-mode header { background: rgba(17,24,39,0.8); border-bottom: 1px solid #374151; }
-body.dark-mode .plan-card, body.dark-mode .about-card, body.dark-mode .feature-item { background: #1f2937; border: 1px solid #374151; }
-body.dark-mode footer { background: #020617; }
-body.dark-mode .hero { background: linear-gradient(135deg,#020617,#1e1b4b); }
-/* =============================== THEME TOGGLE =============================== */
-.theme-toggle { display: flex; align-items: center; }
-.toggle-label {
-    width: 50px; height: 26px; background: #d1d5db;
-    border-radius: 50px; position: relative; cursor: pointer; transition: 0.3s;
+.auth-section .section-title { color: white; }
+.auth-section .section-subtitle { color: rgba(255,255,255,0.8); }
+
+.auth-box {
+    max-width: 480px;
+    margin: 0 auto;
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-2xl);
+    overflow: hidden;
 }
-.toggle-ball { width: 22px; height: 22px; background: white; position: absolute; top: 2px; left: 2px; border-radius: 50%; transition: 0.3s; }
-#theme-switch:checked + .toggle-label { background: var(--primary); }
-#theme-switch:checked + .toggle-label .toggle-ball { transform: translateX(24px); }
-</style>
+body.dark-mode .auth-box { background: var(--gray-100); }
+
+.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; }
+.auth-tab-btn {
+    padding: 16px; text-align: center; font-weight: 600;
+    font-size: var(--font-size-base); cursor: pointer;
+    background: var(--gray-100); color: var(--gray-600);
+    border: none; border-bottom: 3px solid transparent;
+    transition: all var(--transition-base); font-family: inherit;
+}
+body.dark-mode .auth-tab-btn { background: var(--gray-200); color: var(--gray-500); }
+.auth-tab-btn.active { background: white; color: var(--primary); border-bottom-color: var(--primary); }
+body.dark-mode .auth-tab-btn.active { background: var(--gray-100); color: var(--primary); }
+.auth-tab-btn:hover:not(.active) { background: var(--gray-200); }
+
+.auth-card { padding: var(--spacing-2xl); }
+.auth-card h3 { color: var(--primary); margin-bottom: var(--spacing-sm); }
+.card-subtitle { color: var(--gray-600); font-size: var(--font-size-sm); margin-bottom: var(--spacing-xl); }
+
+.auth-divider { border: none; border-top: 1px solid var(--gray-200); margin: var(--spacing-lg) 0; }
+.auth-link-row { text-align:center; font-size:var(--font-size-sm); color:var(--gray-600); margin-top:var(--spacing-md); }
+.auth-link-row a { color:var(--primary); font-weight:600; cursor:pointer; }
+.auth-link-row a:hover { color: var(--accent); }
+
+.hidden { display: none !important; }
+
+/* ========== FOOTER ========== */
+.footer { background:var(--primary); color:white; padding:var(--spacing-3xl) 0 var(--spacing-lg); }
+.footer-content { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:var(--spacing-2xl); margin-bottom:var(--spacing-2xl); }
+.footer-section h4 { color:white; margin-bottom:var(--spacing-lg); }
+.footer-section p { color:rgba(255,255,255,0.8); margin-bottom:var(--spacing-md); }
+.footer-section ul { list-style:none; }
+.footer-section ul li { margin-bottom:var(--spacing-md); }
+.footer-section a { color:rgba(255,255,255,0.8); transition:color var(--transition-fast); }
+.footer-section a:hover { color:var(--accent); }
+.social-links { display:flex; gap:var(--spacing-lg); margin-top:var(--spacing-lg); }
+.social-links a { width:40px; height:40px; background:rgba(255,255,255,0.1); border-radius:var(--radius-full); display:flex; align-items:center; justify-content:center; font-size:var(--font-size-lg); transition:all var(--transition-fast); }
+.social-links a:hover { background:var(--accent); color:var(--primary); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:var(--spacing-lg); text-align:center; color:rgba(255,255,255,0.7); font-size:var(--font-size-sm); }
+
+/* ========== CHATBOT ========== */
+.chat-toggle { position:fixed; bottom:20px; right:20px; background:var(--primary); color:white; border:none; width:60px; height:60px; border-radius:50%; font-size:24px; cursor:pointer; box-shadow:var(--shadow-lg); z-index:1000; }
+.chatbot-container { position:fixed; bottom:90px; right:20px; width:320px; background:white; border-radius:var(--radius-lg); box-shadow:var(--shadow-xl); display:none; flex-direction:column; overflow:hidden; z-index:1000; }
+body.dark-mode .chatbot-container { background:var(--gray-100); }
+.chat-header { background:var(--primary); color:white; padding:12px; font-weight:bold; display:flex; justify-content:space-between; cursor:pointer; }
+.chat-body { height:300px; overflow-y:auto; padding:10px; display:flex; flex-direction:column; gap:10px; }
+.chat-message { padding:10px; border-radius:10px; max-width:80%; }
+.chat-message.bot { background:var(--gray-200); align-self:flex-start; }
+.chat-message.user { background:var(--primary); color:white; align-self:flex-end; }
+.chat-footer { display:flex; border-top:1px solid var(--gray-200); }
+.chat-footer input { flex:1; padding:10px; border:none; outline:none; font-family:inherit; }
+.chat-footer button { background:var(--primary); color:white; border:none; padding:10px 15px; cursor:pointer; }
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInUp { from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:1024px){.container{padding:0 var(--spacing-lg);}section{padding:var(--spacing-2xl) 0;}}
+@media(max-width:768px){
+    :root{--font-size-5xl:2rem;--font-size-4xl:1.75rem;--font-size-3xl:1.5rem;--font-size-2xl:1.25rem;}
+    .plans-grid,.features-grid{grid-template-columns:1fr;}
+    .plan-card-popular{transform:scale(1);}
+    .section-title{font-size:var(--font-size-3xl);}
+}
+@media(max-width:480px){
+    :root{--spacing-lg:1rem;--spacing-xl:1.5rem;}
+    .container{padding:0 var(--spacing-md);}
+    .btn{padding:var(--spacing-md) var(--spacing-lg);font-size:var(--font-size-sm);}
+    .hero-actions{flex-direction:column;}
+    .hero-actions .btn{width:100%;}
+}
+    </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-<nav class="container">
-<div class="logo">WaslaTech</div>
-<div class="theme-toggle">
-<input type="checkbox" id="theme-switch">
-<label for="theme-switch" class="toggle-label"><span class="toggle-ball"></span></label>
-</div>
-<ul class="nav-links">
-<li><a href="#about">About</a></li>
-<li><a href="#plans">Plans</a></li>
-<li><a href="#features">Features</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-<button class="cta-btn" onclick="scrollToPlans()">Explore Plans</button>
-</nav>
+<!-- ===== HEADER ===== -->
+<header class="header">
+    <nav class="navbar container">
+        <div class="navbar-brand">
+            <span class="logo-text">WaslaTech</span>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#founders" class="nav-link">Founders</a></li>
+            <li><a href="#plans" class="nav-link">Plans</a></li>
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+            
+        </ul>
+
+        <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="#auth" class="btn btn-primary">Login / Sign Up</a>
+        </div>
+    </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-<div class="container">
-<h1>Reliable Telecom Solutions for Companies</h1>
-<p>High-speed internet, business connectivity, and corporate solutions tailored for Small, Medium, and Enterprise companies.</p>
-<button class="cta-btn" style="font-size: 1.2rem; padding: 1rem 2rem;" onclick="scrollToPlans()">View Plans</button>
-</div>
+<!-- ===== HERO ===== -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Enterprise Telecom Solutions for Modern Businesses</h1>
+            <p class="hero-subtitle">High-speed connectivity, reliable infrastructure, and world-class support for companies of all sizes</p>
+            <div class="hero-actions">
+                <a href="#plans" class="btn btn-primary btn-lg">View Plans</a>
+                <a href="#contact" class="btn btn-secondary btn-lg">Contact Sales</a>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="about-section">
-<div class="container">
-<h2 class="section-title">About WaslaTech</h2>
-<div class="about-grid">
-<div class="about-text">
-<h3>Empowering Businesses Worldwide</h3>
-<p>WaslaTech provides fast, secure, and reliable telecom solutions for companies of all sizes. Our services ensure your teams stay connected and productive at all times.</p>
-<p>Our mission is to deliver seamless connectivity and cutting-edge solutions that help businesses grow and thrive globally.</p>
-<p>Whether you run a startup, a mid-sized company, or a large enterprise — we have a plan and support structure tailored to your needs.</p>
-</div>
-<div class="about-cards">
-<div class="about-card"><i class="fas fa-bullseye"></i><h4>Our Mission</h4><p>Provide reliable and scalable telecom solutions for businesses worldwide.</p></div>
-<div class="about-card"><i class="fas fa-eye"></i><h4>Our Vision</h4><p>To become the leading corporate telecom provider across all industries.</p></div>
-<div class="about-card"><i class="fas fa-heart"></i><h4>Our Values</h4><p>Innovation, reliability, and client-centric solutions for every company.</p></div>
-</div>
-</div>
-</div>
+<!-- ===== ABOUT ===== -->
+<section id="about" class="about">
+    <div class="container">
+        <h2 class="section-title">About WaslaTech</h2>
+        <div class="about-grid">
+            <div class="about-content">
+                <h3>Empowering Businesses Worldwide</h3>
+                <p>WaslaTech delivers enterprise-grade telecom solutions that keep your business connected, secure, and productive. With over 500+ corporate clients across 50+ countries, we've built a reputation for reliability and innovation.</p>
+                <p>Our mission is to provide seamless connectivity and cutting-edge solutions that enable businesses to thrive in a connected world.</p>
+            </div>
+            <div class="about-cards">
+                <div class="about-card">
+                    <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                    <h4>Our Mission</h4>
+                    <p>Deliver reliable, scalable telecom solutions that empower businesses globally</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon"><i class="fas fa-eye"></i></div>
+                    <h4>Our Vision</h4>
+                    <p>Be the leading enterprise telecom provider trusted by businesses worldwide</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon"><i class="fas fa-heart"></i></div>
+                    <h4>Our Values</h4>
+                    <p>Innovation, reliability, transparency, and customer success in everything we do</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!-- PLANS -->
+<!-- ===== FOUNDERS ===== -->
+<section id="founders" class="founders">
+    <div class="container">
+        <h2 class="section-title">Meet Our Founders</h2>
+        <p class="section-subtitle">The team behind WaslaTech's success</p>
+        <div class="founders-grid">
+
+            <div class="founder-card">
+                <img src="Images/Mariam.jpeg" alt="Mariam Ahmed">
+                <h3>Mariam Ahmed</h3>
+                <p class="role">CEO & Founder</p>
+                <p>Visionary leader driving innovation and strategy (Head of Operations)</p>
+                <div class="socials"><i class="fab fa-linkedin"></i></div>
+            </div>
+
+            <div class="founder-card">
+                <img src="Images/Daniel.jpeg" alt="Daniel Amgad">
+                <h3>Daniel Amgad</h3>
+                <p class="role">Chief Website Developer & Data Analyst</p>
+                <p>Expert in web development & technology and relationship management.</p>
+                <div class="socials"><i class="fab fa-linkedin"></i></div>
+            </div>
+
+            <div class="founder-card">
+                <img src="Images/Faridaa.jpeg" alt="Farida Hussein">
+                <h3>Farida Hussein</h3>
+                <p class="role">Marketing Director</p>
+                <p>Leads global branding and campaigns and a problem solver.</p>
+                <div class="socials"><i class="fab fa-linkedin"></i></div>
+            </div>
+
+            <div class="founder-card">
+                <img src="Images/Souhaib.jpeg" alt="Souhaib Djelani">
+                <h3>Souhaib Djelani</h3>
+                <p class="role">Business Strategy Advisor</p>
+                <p>Business planning and strategy. Experienced in driving growth initiatives.</p>
+                <div class="socials"><i class="fab fa-linkedin"></i></div>
+            </div>
+
+            <div class="founder-card">
+                <img src="Images/Joudy.jpeg" alt="Joudy Ahmed">
+                <h3>Joudy Ahmed</h3>
+                <p class="role">UI/UX Designer</p>
+                <p>Designs user-friendly experiences and interfaces.</p>
+                <div class="socials"><i class="fab fa-linkedin"></i></div>
+            </div>
+
+            <div class="founder-card">
+                <img src="Images/Martin.jpeg" alt="Martin Medhat">
+                <h3>Martin Medhat</h3>
+                <p class="role">Operations Manager</p>
+                <p>Ensures smooth business operations and efficient resource allocation.</p>
+                <div class="socials"><i class="fab fa-linkedin"></i></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== PLANS ===== -->
 <section id="plans" class="plans">
-<div class="container">
-<h2 class="section-title">Plans Tailored for Companies</h2>
-<div class="plans-grid">
-<div class="plan-card small-business">
-<div class="age-badge">Small</div>
-<div class="plan-icon"><i class="fas fa-building"></i></div>
-<h3>Small Business</h3>
-<div class="price">$99<span>/mo</span></div>
-<ul class="features">
-<li><i class="fas fa-check"></i> 500GB High-Speed Data</li>
-<li><i class="fas fa-check"></i> Business Email & Collaboration Tools</li>
-<li><i class="fas fa-check"></i> 24/7 Customer Support</li>
-<li><i class="fas fa-check"></i> Secure Cloud Backup</li>
-<li><i class="fas fa-check"></i> VoIP & Video Conferencing</li>
-</ul>
-<button class="cta-btn">Get Small Plan</button>
-</div>
+    <div class="container">
+        <h2 class="section-title">Flexible Pricing Plans</h2>
+        <p class="section-subtitle">Choose the perfect plan for your business needs</p>
+        <div class="plans-grid">
 
-<div class="plan-card medium-business popular">
-<div class="age-badge">Medium</div>
-<div class="plan-icon"><i class="fas fa-city"></i></div>
-<h3>Medium Business</h3>
-<div class="price">$199<span>/mo</span></div>
-<ul class="features">
-<li><i class="fas fa-check"></i> 2TB High-Speed Data</li>
-<li><i class="fas fa-check"></i> Dedicated Account Manager</li>
-<li><i class="fas fa-check"></i> Priority Network Support</li>
-<li><i class="fas fa-check"></i> Multi-location Connectivity</li>
-<li><i class="fas fa-check"></i> Advanced Security Suite</li>
-</ul>
-<button class="cta-btn">Get Medium Plan</button>
-</div>
+            <div class="plan-card">
+                <div class="plan-badge">Small</div>
+                <div class="plan-icon"><i class="fas fa-building"></i></div>
+                <h3 class="plan-name">Small Business</h3>
+                <div class="plan-price"><span class="price-amount">$99</span><span class="price-period">/month</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 500GB High-Speed Data</li>
+                    <li><i class="fas fa-check"></i> Business Email & Collaboration</li>
+                    <li><i class="fas fa-check"></i> 24/7 Customer Support</li>
+                    <li><i class="fas fa-check"></i> Secure Cloud Backup</li>
+                    <li><i class="fas fa-check"></i> VoIP & Video Conferencing</li>
+                </ul>
+                <button class="btn btn-primary btn-block" onclick="selectPlan('Small Business','$99/month')">Get Started</button>
+            </div>
 
-<div class="plan-card enterprise">
-<div class="age-badge">Enterprise</div>
-<div class="plan-icon"><i class="fas fa-industry"></i></div>
-<h3>Enterprise</h3>
-<div class="price">Custom<span>/mo</span></div>
-<ul class="features">
-<li><i class="fas fa-check"></i> Unlimited Data & Bandwidth</li>
-<li><i class="fas fa-check"></i> Dedicated Infrastructure & SLA</li>
-<li><i class="fas fa-check"></i> International Connectivity</li>
-<li><i class="fas fa-check"></i> Enterprise-grade Security</li>
-<li><i class="fas fa-check"></i> Onsite & Remote Support</li>
-</ul>
-<button class="cta-btn">Contact Sales</button>
-</div>
-</div>
-</div>
+            <div class="plan-card plan-card-popular">
+                <div class="plan-badge popular-badge">Most Popular</div>
+                <div class="plan-icon"><i class="fas fa-city"></i></div>
+                <h3 class="plan-name">Medium Business</h3>
+                <div class="plan-price"><span class="price-amount">$199</span><span class="price-period">/month</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 2TB High-Speed Data</li>
+                    <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
+                    <li><i class="fas fa-check"></i> Priority Network Support</li>
+                    <li><i class="fas fa-check"></i> Multi-location Connectivity</li>
+                    <li><i class="fas fa-check"></i> Advanced Security Suite</li>
+                </ul>
+                <button class="btn btn-primary btn-block" onclick="selectPlan('Medium Business','$199/month')">Get Started</button>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-badge">Enterprise</div>
+                <div class="plan-icon"><i class="fas fa-industry"></i></div>
+                <h3 class="plan-name">Enterprise</h3>
+                <div class="plan-price"><span class="price-amount">Custom</span><span class="price-period">Pricing</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Unlimited Data & Bandwidth</li>
+                    <li><i class="fas fa-check"></i> Dedicated Infrastructure & SLA</li>
+                    <li><i class="fas fa-check"></i> International Connectivity</li>
+                    <li><i class="fas fa-check"></i> Enterprise-grade Security</li>
+                    <li><i class="fas fa-check"></i> Onsite & Remote Support</li>
+                </ul>
+                <button class="btn btn-secondary btn-block" onclick="selectPlan('Enterprise','Custom Pricing')">Get Started</button>
+            </div>
+
+        </div>
+    </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features" class="features-section">
-<div class="container">
-<h2 class="section-title">Why Companies Choose WaslaTech</h2>
-<div class="features-grid">
-<div class="feature-item"><i class="fas fa-shield-alt"></i><h4>Enterprise Security</h4><p>End-to-end encryption, VPN, and corporate-grade security measures for sensitive data.</p></div>
-<div class="feature-item"><i class="fas fa-bolt"></i><h4>High-Speed Network</h4><p>Lightning-fast fiber and 5G network optimized for business-critical applications.</p></div>
-<div class="feature-item"><i class="fas fa-users"></i><h4>Dedicated Support</h4><p>Account managers and 24/7 technical support to ensure your operations never stop.</p></div>
-<div class="feature-item"><i class="fas fa-globe"></i><h4>Global Connectivity</h4><p>International bandwidth and low-latency connections for multi-national companies.</p></div>
-<div class="feature-item"><i class="fas fa-cloud"></i><h4>Cloud Integration</h4><p>Seamless integration with corporate cloud services for data backup & collaboration.</p></div>
-<div class="feature-item"><i class="fas fa-dollar-sign"></i><h4>Flexible Pricing</h4><p>Custom plans and scalable pricing to suit businesses of all sizes.</p></div>
-</div>
-</div>
+<!-- ===== FEATURES ===== -->
+<section id="features" class="features">
+    <div class="container">
+        <h2 class="section-title">Why Choose WaslaTech</h2>
+        <p class="section-subtitle">Industry-leading features for enterprise success</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h4>Enterprise Security</h4>
+                <p>End-to-end encryption, VPN, and corporate-grade security for sensitive data protection</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h4>High-Speed Network</h4>
+                <p>Lightning-fast fiber and 5G network optimized for business-critical applications</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h4>Dedicated Support</h4>
+                <p>Account managers and 24/7 technical support to ensure operations never stop</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                <h4>Global Connectivity</h4>
+                <p>International bandwidth and low-latency connections for multi-national companies</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-cloud"></i></div>
+                <h4>Cloud Integration</h4>
+                <p>Seamless integration with corporate cloud services for backup and collaboration</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
+                <h4>Flexible Pricing</h4>
+                <p>Custom plans and scalable pricing to suit businesses of all sizes</p>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!-- FOOTER -->
-<footer id="contact">
-<div class="container">
-<h3>Ready to Connect Your Business?</h3>
-<p>Contact us today for a free consultation and custom quote!</p>
-<button class="cta-btn" style="font-size: 1.1rem;">Contact Sales</button>
-<div class="social-links">
-<a href="#"><i class="fab fa-linkedin"></i></a>
-<a href="#"><i class="fab fa-twitter"></i></a>
-<a href="#"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-</div>
-<p>&copy; 2026 WaslaTech. Connecting businesses worldwide.</p>
-</div>
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-subtitle">Have questions? Our team is ready to help</p>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+966 1 234 5678</p>
+                        <p class="text-muted">Available 24/7</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>WaslaTech.Telecom@Gmail.com</p>
+                        <p class="text-muted">Response within 2 hours</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Smart Village, Cairo, Egypt</p>
+                        <p class="text-muted">Regional offices available</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="cName">Full Name *</label>
+                    <input type="text" id="cName" required placeholder="Your name" class="form-input">
+                    <span class="error-message" id="nameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cCompany">Company Name *</label>
+                    <input type="text" id="cCompany" required placeholder="Your company" class="form-input">
+                    <span class="error-message" id="companyError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cEmail">Email Address *</label>
+                    <input type="email" id="cEmail" required placeholder="your.email@company.com" class="form-input">
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cPhone">Phone Number *</label>
+                    <input type="tel" id="cPhone" required placeholder="+966 1 234 5678" class="form-input">
+                    <span class="error-message" id="phoneError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cMessage">Message *</label>
+                    <textarea id="cMessage" required placeholder="Tell us about your needs..." rows="5" class="form-input"></textarea>
+                    <span class="error-message" id="messageError"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
+                <p class="form-note">We'll get back to you within 24 hours</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ===== AUTH SECTION (Login / Sign Up) ===== -->
+<section id="auth" class="auth-section">
+    <div class="container">
+        <h2 class="section-title">My Account</h2>
+        <p class="section-subtitle">Login or create a new WaslaTech account</p>
+
+        <div class="auth-box">
+            <!-- TABS -->
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="auth-tab-btn" id="tabSignup" onclick="switchAuthTab('signup')">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </button>
+            </div>
+
+            <!-- LOGIN -->
+            <div class="auth-card" id="loginCard">
+                <h3>Welcome back</h3>
+                <p class="card-subtitle">Sign in to your WaslaTech account</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-input" placeholder="you@company.com" required>
+                        <span class="error-message" id="loginEmailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-input" placeholder="Your password" required>
+                        <span class="error-message" id="loginPasswordError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+                </form>
+                <hr class="auth-divider">
+                <p class="auth-link-row">Don't have an account? <a onclick="switchAuthTab('signup')">Sign up for free</a></p>
+            </div>
+
+            <!-- SIGNUP -->
+            <div class="auth-card hidden" id="signupCard">
+                <h3>Create an account</h3>
+                <p class="card-subtitle">Join WaslaTech and get connected today</p>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" class="form-input" placeholder="Your full name" required>
+                        <span class="error-message" id="signupNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" class="form-input" placeholder="you@company.com" required>
+                        <span class="error-message" id="signupEmailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" class="form-input" placeholder="Min. 6 chars, 1 uppercase, 1 number" required>
+                        <span class="error-message" id="signupPasswordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="form-input" placeholder="Repeat your password" required>
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Create Account</button>
+                </form>
+                <hr class="auth-divider">
+                <p class="auth-link-row">Already have an account? <a onclick="switchAuthTab('login')">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>WaslaTech</h4>
+                <p>Enterprise telecom solutions connecting businesses worldwide</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#plans">Plans</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#auth">Login / Sign Up</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Status Page</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Compliance</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WaslaTech. All rights reserved. | Connecting businesses worldwide</p>
+        </div>
+    </div>
 </footer>
 
-<script>
-// DARK MODE TOGGLE
-const themeSwitch = document.getElementById('theme-switch');
-themeSwitch.addEventListener('change', () => { document.body.classList.toggle('dark-mode'); });
+<!-- ===== CHATBOT ===== -->
+<div class="chatbot-container" id="chatbot">
+    <div class="chat-header" onclick="toggleChat()">
+        <span>WaslaTech Assistant</span>
+        <i class="fas fa-times"></i>
+    </div>
+    <div class="chat-body" id="chatBody">
+        <div class="chat-message bot">Hello 👋 I'm WaslaTech Assistant. How can I help you today?</div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+<button class="chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
 
-// SCROLL TO PLANS
-function scrollToPlans(){ document.getElementById('plans').scrollIntoView({behavior:'smooth'}); }
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* ---- THEME ---- */
+class ThemeManager {
+    constructor() {
+        this.btn = document.getElementById('themeToggle');
+        this.key = 'waslatech-theme';
+        this.init();
+    }
+    init() {
+        localStorage.getItem(this.key) === 'dark' ? this.dark() : this.light();
+        if (this.btn) this.btn.addEventListener('click', () => this.toggle());
+    }
+    toggle() { document.body.classList.contains('dark-mode') ? this.light() : this.dark(); }
+    dark()  { document.body.classList.add('dark-mode');    localStorage.setItem(this.key,'dark');  this.icon(); }
+    light() { document.body.classList.remove('dark-mode'); localStorage.setItem(this.key,'light'); this.icon(); }
+    icon()  { if(this.btn) this.btn.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; }
+}
+
+/* ---- MOBILE MENU ---- */
+class MobileMenu {
+    constructor() {
+        this.btn   = document.getElementById('mobileMenuBtn');
+        this.links = document.getElementById('navLinks');
+        if (this.btn) this.btn.addEventListener('click', () => this.links.classList.toggle('active'));
+        if (this.links) this.links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => this.links.classList.remove('active')));
+    }
+}
+
+/* ---- HELPERS ---- */
+function isEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+function isPhone(p) { return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(p.replace(/\s/g,'')); }
+function showErr(id, msg) { const el=document.getElementById(id); if(el){el.textContent=msg; el.style.display='block';} }
+function clearErrs() { document.querySelectorAll('.error-message').forEach(el=>{el.textContent=''; el.style.display='none';}); }
+
+/* ---- CONTACT FORM ---- */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault(); clearErrs();
+    const name=document.getElementById('cName').value.trim();
+    const company=document.getElementById('cCompany').value.trim();
+    const email=document.getElementById('cEmail').value.trim();
+    const phone=document.getElementById('cPhone').value.trim();
+    const msg=document.getElementById('cMessage').value.trim();
+    let ok=true;
+    if(!name||name.length<2)     {showErr('nameError','Name must be at least 2 characters');ok=false;}
+    if(!company||company.length<2){showErr('companyError','Company must be at least 2 characters');ok=false;}
+    if(!email||!isEmail(email))   {showErr('emailError','Enter a valid email address');ok=false;}
+    if(!phone||!isPhone(phone))   {showErr('phoneError','Enter a valid phone number');ok=false;}
+    if(!msg||msg.length<10)       {showErr('messageError','Message must be at least 10 characters');ok=false;}
+    if(ok){ alert('Thank you! We will get back to you within 24 hours.'); this.reset(); }
+});
+
+/* ---- LOGIN FORM ---- */
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault(); clearErrs();
+    const email=document.getElementById('loginEmail').value.trim();
+    const pass=document.getElementById('loginPassword').value;
+    let ok=true;
+    if(!email||!isEmail(email)) {showErr('loginEmailError','Enter a valid email address');ok=false;}
+    if(!pass||pass.length<6)    {showErr('loginPasswordError','Password must be at least 6 characters');ok=false;}
+    if(ok){ alert('Login successful! Welcome back to WaslaTech.'); this.reset(); }
+});
+
+/* ---- SIGNUP FORM ---- */
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault(); clearErrs();
+    const name=document.getElementById('signupName').value.trim();
+    const email=document.getElementById('signupEmail').value.trim();
+    const pass=document.getElementById('signupPassword').value;
+    const conf=document.getElementById('confirmPassword').value;
+    let ok=true;
+    if(!name||name.length<2)     {showErr('signupNameError','Name must be at least 2 characters');ok=false;}
+    if(!email||!isEmail(email))  {showErr('signupEmailError','Enter a valid email address');ok=false;}
+    if(!pass||pass.length<6)     {showErr('signupPasswordError','Password must be at least 6 characters');ok=false;}
+    else if(!/[A-Z]/.test(pass)) {showErr('signupPasswordError','Must contain at least one uppercase letter');ok=false;}
+    else if(!/[0-9]/.test(pass)) {showErr('signupPasswordError','Must contain at least one number');ok=false;}
+    if(pass!==conf)              {showErr('confirmPasswordError','Passwords do not match');ok=false;}
+    if(ok){ alert('Account created! Check your email to verify.'); this.reset(); switchAuthTab('login'); }
+});
+
+/* ---- AUTH TABS ---- */
+function switchAuthTab(tab) {
+    clearErrs();
+    document.getElementById('loginCard').classList.toggle('hidden', tab!=='login');
+    document.getElementById('signupCard').classList.toggle('hidden', tab!=='signup');
+    document.getElementById('tabLogin').classList.toggle('active', tab==='login');
+    document.getElementById('tabSignup').classList.toggle('active', tab==='signup');
+}
+
+/* ---- PLAN SELECTION ---- */
+function selectPlan(name, price) {
+    alert(`You selected the ${name} plan (${price}). Our sales team will contact you shortly.`);
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+}
+
+/* ---- CHATBOT ---- */
+function toggleChat() {
+    const c=document.getElementById('chatbot');
+    c.style.display = c.style.display==='flex' ? 'none' : 'flex';
+}
+function sendMessage() {
+    const inp=document.getElementById('chatInput');
+    const msg=inp.value.trim(); if(!msg) return;
+    addMsg(msg,'user'); inp.value='';
+    setTimeout(()=>addMsg(getBotReply(msg),'bot'),500);
+}
+function addMsg(text,sender) {
+    const cb=document.getElementById('chatBody');
+    const d=document.createElement('div');
+    d.classList.add('chat-message',sender);
+    d.textContent=text; cb.appendChild(d); cb.scrollTop=cb.scrollHeight;
+}
+function getBotReply(m) {
+    m=m.toLowerCase();
+    if(m.includes('hello')||m.includes('hi')) return "Hello 👋 How can I assist you today?";
+    if(m.includes('about')||m.includes('who are you')) return "WaslaTech is a leading enterprise telecom provider offering high-speed connectivity and dedicated business support worldwide.";
+    if(m.includes('service')||m.includes('what do you do')) return "We provide enterprise telecom: high-speed internet, secure connectivity, VoIP, and cloud integration.";
+    if(m.includes('price')||m.includes('plan')||m.includes('cost')) return "Plans: Small ($99/mo), Medium ($199/mo), Enterprise (custom). Check the Plans section for details!";
+    if(m.includes('login')||m.includes('sign up')||m.includes('account')) return "Scroll down to the Login / Sign Up section or click the button in the header!";
+    if(m.includes('contact')) return "Reach us via the Contact form, call +966 1 234 5678, or email WaslaTech.Telecom@Gmail.com 📞";
+    if(m.includes('support')) return "We offer 24/7 enterprise support for all plans.";
+    if(m.includes('founder')||m.includes('team')) return "Founded by Mariam Ahmed, Daniel Amgad, Souhaib Djelani, Joudy Ahmed, Farida Hussein & Martin Medhat. See the Founders section!";
+    if(m.includes('thank')) return "You're welcome! Have a great day! 😊";
+    if(m.includes('error')||m.includes('problem')||m.includes('not working')) return "Sorry to hear that. Please use the Contact form and our team will help you quickly.";
+    return "Great question! Use the Contact form and our team will get back to you.";
+}
+
+/* ---- INIT ---- */
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager();
+    new MobileMenu();
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            e.preventDefault();
+            const t=document.querySelector(this.getAttribute('href'));
+            if(t) t.scrollIntoView({behavior:'smooth'});
+        });
+    });
+    const ci=document.getElementById('chatInput');
+    if(ci) ci.addEventListener('keypress', e=>{ if(e.key==='Enter') sendMessage(); });
+});
 </script>
 </body>
 </html>
