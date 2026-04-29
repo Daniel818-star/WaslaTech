@@ -3,930 +3,686 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="WaslaTech - Enterprise Telecom Solutions for Companies">
-    <meta name="keywords" content="telecom, business connectivity, VoIP, enterprise solutions">
-    <meta name="author" content="WaslaTech">
-    <title>WaslaTech - Enterprise Telecom Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>WaslaTech | Premium WhatsApp Business API Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
-/* ========== CSS VARIABLES & THEME ========== */
-:root {
-    --primary: #1a3a52;
-    --primary-light: #2a4a62;
-    --primary-dark: #0a2a42;
-    --accent: #70c8ff;
-    --accent-light: #90d8ff;
-    --accent-dark: #50b8ef;
-    --dark: #0c0c0c;
-    --light: #f9fafb;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --error: #ef4444;
-    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 1.875rem;
-    --font-size-4xl: 2.25rem;
-    --font-size-5xl: 3rem;
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
-    --spacing-2xl: 2.5rem;
-    --spacing-3xl: 3rem;
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.5rem;
-    --radius-full: 9999px;
-    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
-    --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,0.25);
-    --transition-fast: 150ms ease-in-out;
-    --transition-base: 250ms ease-in-out;
-    --transition-slow: 350ms ease-in-out;
+        :root {
+            --bg: #030712;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --turquoise: #10b981;
+            --fg: #f9fafb;
+            --muted: #9ca3af;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        .light-mode {
+            --bg: #f8fafc;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.2);
+            --turquoise: #059669;
+            --fg: #0f172a;
+            --muted: #64748b;
+            --border: rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--fg);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .font-display { font-family: 'Sora', sans-serif; }
+
+        /* Premium Glassmorphism */
+        .glass {
+    background: var(--bg-card);
+    -webkit-backdrop-filter: blur(12px); /* Vendor prefix comes first */
+    backdrop-filter: blur(12px);         /* Standard property comes last */
+    border: 1px solid var(--border);
 }
 
-body.dark-mode {
-    --primary: #70c8ff;
-    --primary-light: #90d8ff;
-    --primary-dark: #50b8ef;
-    --accent: #285b82;
-    --accent-light: #2a4a62;
-    --accent-dark: #0a2a42;
-    --dark: #f9fafb;
-    --light: #0c0c0c;
-    --gray-50: #0c0c0c;
-    --gray-100: #1f2937;
-    --gray-200: #374151;
-    --gray-300: #4b5563;
-    --gray-400: #6b7280;
-    --gray-500: #9ca3af;
-    --gray-600: #d1d5db;
-    --gray-700: #e5e7eb;
-    --gray-800: #f3f4f6;
-    --gray-900: #f9fafb;
-}
+        .glass-hover:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-4px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-/* ========== RESET & BASE ========== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body {
-    font-family: var(--font-family);
-    font-size: var(--font-size-base);
-    line-height: 1.6;
-    color: var(--gray-700);
-    background-color: var(--light);
-    transition: background-color var(--transition-base), color var(--transition-base);
-    overflow-x: hidden;
-}
-body.dark-mode { background-color: var(--light); color: var(--gray-600); }
+        /* Animated Background Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 20s infinite alternate;
+        }
 
-h1,h2,h3,h4,h5,h6 { font-weight:700; line-height:1.2; color:var(--primary); margin-bottom:var(--spacing-md); }
-h1{font-size:var(--font-size-5xl);}h2{font-size:var(--font-size-4xl);}h3{font-size:var(--font-size-3xl);}
-h4{font-size:var(--font-size-2xl);}h5{font-size:var(--font-size-xl);}h6{font-size:var(--font-size-lg);}
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
 
-p { margin-bottom: var(--spacing-md); color: var(--gray-600); }
-a { color: var(--primary); text-decoration: none; transition: color var(--transition-fast); }
-a:hover { color: var(--accent); }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-md); }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* ========== BUTTONS ========== */
-.btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: var(--font-size-base); font-weight: 600;
-    border: none; border-radius: var(--radius-lg);
-    cursor: pointer; transition: all var(--transition-base);
-    text-decoration: none; white-space: nowrap; gap: var(--spacing-sm);
-}
-.btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.btn-primary { background-color: var(--primary); color: white; box-shadow: var(--shadow-md); }
-.btn-primary:hover:not(:disabled) { background-color: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-lg); color: white; }
-.btn-secondary { background-color: var(--accent); color: var(--primary); box-shadow: var(--shadow-md); }
-.btn-secondary:hover:not(:disabled) { background-color: var(--accent-light); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-.btn-lg { padding: var(--spacing-lg) var(--spacing-2xl); font-size: var(--font-size-lg); }
-.btn-block { width: 100%; }
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent), var(--turquoise));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-/* ========== HEADER ========== */
-.header {
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--gray-200);
-    position: fixed; top:0; left:0; right:0;
-    z-index: 1000; transition: all var(--transition-base);
-}
-body.dark-mode .header { background: rgba(15,23,42,0.95); border-bottom-color: var(--gray-200); }
+        /* Premium Buttons */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-premium::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+        .btn-premium:hover::after { transform: scale(1); }
 
-.navbar { display:flex; align-items:center; justify-content:space-between; padding:var(--spacing-md) 0; gap:var(--spacing-lg); }
-.navbar-brand { display:flex; align-items:center; gap:var(--spacing-sm); font-size:var(--font-size-2xl); font-weight:700; color:var(--primary); text-decoration:none; }
+        /* Founder Card Specifics */
+        .founder-card img {
+            transition: transform 0.5s ease;
+        }
+        .founder-card:hover img {
+            transform: scale(1.1);
+        }
 
-.logo-text { display: none; }
-@media (min-width: 768px) { .logo-text { display: inline; } }
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.nav-links { display:none; list-style:none; gap:var(--spacing-xl); flex:1; }
-@media (min-width: 768px) { .nav-links { display: flex; } }
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
 
-.nav-link { color:var(--gray-700); font-weight:500; transition:color var(--transition-fast); }
-body.dark-mode .nav-link { color: var(--gray-600); }
-.nav-link:hover { color: var(--primary); }
+        /* Light mode scrollbar fix */
+        .light-mode ::-webkit-scrollbar-track { background: #f1f5f9; }
+        .light-mode ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+        .light-mode ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-.header-actions { display:flex; align-items:center; gap:var(--spacing-md); }
-
-.mobile-menu-btn { display:flex; flex-direction:column; gap:6px; background:none; border:none; cursor:pointer; padding:var(--spacing-sm); }
-.mobile-menu-btn span { width:24px; height:2px; background-color:var(--primary); transition:all var(--transition-fast); }
-@media (min-width: 768px) { .mobile-menu-btn { display: none; } }
-
-.theme-toggle { background:none; border:none; cursor:pointer; font-size:var(--font-size-lg); color:var(--primary); transition:color var(--transition-fast); padding:var(--spacing-sm); }
-.theme-toggle:hover { color: var(--accent); }
-
-/* ========== HERO ========== */
-.hero {
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
-    color: white; padding: 120px var(--spacing-md) var(--spacing-3xl);
-    margin-top: 70px; text-align: center; min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-}
-.hero-content { max-width: 800px; animation: fadeInUp 0.8s ease-out; }
-.hero-title { font-size: var(--font-size-5xl); color: white; margin-bottom: var(--spacing-lg); line-height: 1.1; }
-.hero-subtitle { font-size: var(--font-size-xl); color: rgba(255,255,255,0.9); margin-bottom: var(--spacing-2xl); }
-.hero-actions { display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap; }
-
-@media (max-width: 768px) {
-    .hero { padding: 100px var(--spacing-md) var(--spacing-2xl); }
-    .hero-title { font-size: var(--font-size-3xl); }
-    .hero-subtitle { font-size: var(--font-size-base); }
-    .hero-actions { flex-direction: column; }
-}
-
-/* ========== SECTIONS ========== */
-section { padding: var(--spacing-3xl) 0; }
-.section-title { font-size:var(--font-size-4xl); text-align:center; margin-bottom:var(--spacing-lg); color:var(--primary); }
-.section-subtitle { text-align:center; color:var(--gray-600); font-size:var(--font-size-lg); margin-bottom:var(--spacing-2xl); max-width:600px; margin-left:auto; margin-right:auto; }
-
-/* ========== ABOUT ========== */
-.about { background-color: var(--gray-50); }
-.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--spacing-3xl); align-items:center; }
-.about-cards { display:flex; flex-direction:column; gap:var(--spacing-lg); }
-.about-card { background:white; padding:var(--spacing-lg); border-radius:var(--radius-lg); border:1px solid var(--gray-200); transition:all var(--transition-base); box-shadow:var(--shadow-sm); }
-body.dark-mode .about-card { background:var(--gray-100); border-color:var(--gray-200); }
-.about-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--accent); }
-.card-icon { width:50px; height:50px; background:linear-gradient(135deg,var(--primary),var(--accent)); border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center; color:white; font-size:var(--font-size-2xl); margin-bottom:var(--spacing-md); }
-.about-card h4 { color:var(--primary); margin-bottom:var(--spacing-sm); }
-.about-card p { font-size:var(--font-size-sm); color:var(--gray-600); margin-bottom:0; }
-@media (max-width: 768px) { .about-grid { grid-template-columns:1fr; gap:var(--spacing-2xl); } }
-
-/* ========== FOUNDERS ========== */
-.founders { background: var(--gray-50); }
-.founders-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:var(--spacing-2xl); }
-.founder-card { background:white; padding:var(--spacing-xl); border-radius:var(--radius-xl); text-align:center; transition:var(--transition-base); box-shadow:var(--shadow-md); animation:fadeInUp 0.8s ease; }
-body.dark-mode .founder-card { background: var(--gray-100); }
-.founder-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-xl); }
-.founder-card img { width:110px; height:150px; border-radius:50%; object-fit:cover; }
-.founder-card h3 { color:var(--primary); margin-bottom:5px; }
-.role { color:var(--accent); font-weight:600; margin-bottom:var(--spacing-sm); }
-.socials { margin-top:var(--spacing-md); }
-.socials i { font-size:20px; color:var(--primary); cursor:pointer; transition:0.3s; }
-.socials i:hover { color:var(--accent); }
-
-/* ========== PLANS ========== */
-.plans { background-color: white; }
-body.dark-mode .plans { background-color: var(--gray-50); }
-.plans-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:var(--spacing-2xl); }
-.plan-card { background:white; border:2px solid var(--gray-200); border-radius:var(--radius-xl); padding:var(--spacing-2xl); text-align:center; transition:all var(--transition-base); position:relative; display:flex; flex-direction:column; box-shadow:var(--shadow-md); }
-body.dark-mode .plan-card { background:var(--gray-100); border-color:var(--gray-200); }
-.plan-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-xl); }
-.plan-card-popular { border-color:var(--primary); transform:scale(1.05); }
-.plan-card-popular:hover { transform:scale(1.05) translateY(-8px); }
-.plan-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--primary); color:white; padding:var(--spacing-sm) var(--spacing-lg); border-radius:var(--radius-full); font-size:var(--font-size-sm); font-weight:600; }
-.popular-badge { background:linear-gradient(135deg,var(--primary),var(--accent)); }
-.plan-icon { font-size:var(--font-size-5xl); color:var(--primary); margin:var(--spacing-lg) 0; }
-.plan-name { font-size:var(--font-size-2xl); color:var(--primary); margin-bottom:var(--spacing-md); }
-.plan-price { display:flex; align-items:baseline; justify-content:center; gap:var(--spacing-sm); margin-bottom:var(--spacing-lg); }
-.price-amount { font-size:var(--font-size-5xl); font-weight:700; color:var(--primary); }
-.price-period { color:var(--gray-600); font-size:var(--font-size-base); }
-.plan-features { list-style:none; margin:var(--spacing-lg) 0; flex-grow:1; text-align:left; }
-.plan-features li { padding:var(--spacing-sm) 0; color:var(--gray-600); display:flex; align-items:center; gap:var(--spacing-sm); }
-.plan-features i { color:var(--accent); font-size:var(--font-size-lg); }
-@media (max-width: 768px) { .plan-card-popular { transform:scale(1); } .plan-card-popular:hover { transform:translateY(-8px); } }
-
-/* ========== FEATURES ========== */
-.features { background-color: var(--gray-50); }
-.features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:var(--spacing-2xl); }
-.feature-item { background:white; padding:var(--spacing-2xl); border-radius:var(--radius-lg); text-align:center; transition:all var(--transition-base); box-shadow:var(--shadow-sm); }
-body.dark-mode .feature-item { background: var(--gray-100); }
-.feature-item:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
-.feature-icon { width:60px; height:60px; background:linear-gradient(135deg,var(--primary),var(--accent)); border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center; color:white; font-size:var(--font-size-2xl); margin:0 auto var(--spacing-lg); }
-.feature-item h4 { color:var(--primary); margin-bottom:var(--spacing-md); }
-.feature-item p { color:var(--gray-600); font-size:var(--font-size-sm); margin-bottom:0; }
-
-/* ========== CONTACT ========== */
-.contact { background-color: white; }
-body.dark-mode .contact { background-color: var(--gray-50); }
-.contact-wrapper { display:grid; grid-template-columns:1fr 1fr; gap:var(--spacing-3xl); align-items:start; }
-.contact-info { display:flex; flex-direction:column; gap:var(--spacing-2xl); }
-.info-item { display:flex; gap:var(--spacing-lg); padding:var(--spacing-lg); background:var(--gray-50); border-radius:var(--radius-lg); border:1px solid var(--gray-200); }
-body.dark-mode .info-item { background: var(--gray-100); }
-.info-icon { width:50px; height:50px; background:linear-gradient(135deg,var(--primary),var(--accent)); border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center; color:white; font-size:var(--font-size-xl); flex-shrink:0; }
-.info-item h4 { color:var(--primary); margin-bottom:var(--spacing-sm); }
-.info-item p { margin-bottom:var(--spacing-xs); font-size:var(--font-size-sm); }
-.text-muted { color:var(--gray-500); font-size:var(--font-size-xs); }
-@media (max-width: 768px) { .contact-wrapper { grid-template-columns:1fr; } }
-
-/* ========== FORMS ========== */
-.contact-form { background:white; padding:var(--spacing-2xl); border-radius:var(--radius-lg); border:1px solid var(--gray-200); box-shadow:var(--shadow-md); }
-body.dark-mode .contact-form { background:var(--gray-100); border-color:var(--gray-200); }
-.form-group { margin-bottom:var(--spacing-lg); }
-.form-group label { display:block; font-weight:600; color:var(--primary); margin-bottom:var(--spacing-sm); font-size:var(--font-size-sm); }
-.form-input { width:100%; padding:var(--spacing-md); border:1px solid var(--gray-300); border-radius:var(--radius-md); font-family:inherit; font-size:var(--font-size-base); transition:all var(--transition-fast); background-color:white; color:var(--gray-900); }
-body.dark-mode .form-input { background-color:var(--gray-200); border-color:var(--gray-300); color:var(--gray-900); }
-.form-input:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(26,58,82,0.1); }
-.form-input::placeholder { color: var(--gray-400); }
-.form-note { font-size:var(--font-size-sm); color:var(--gray-600); text-align:center; margin-top:var(--spacing-md); }
-.error-message { display:block; color:var(--error); font-size:var(--font-size-sm); margin-top:var(--spacing-xs); }
-
-/* ========== AUTH SECTION ========== */
-.auth-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    padding: var(--spacing-3xl) 0;
-}
-.auth-section .section-title { color: white; }
-.auth-section .section-subtitle { color: rgba(255,255,255,0.8); }
-
-.auth-box {
-    max-width: 480px;
-    margin: 0 auto;
-    background: white;
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-2xl);
-    overflow: hidden;
-}
-body.dark-mode .auth-box { background: var(--gray-100); }
-
-.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; }
-.auth-tab-btn {
-    padding: 16px; text-align: center; font-weight: 600;
-    font-size: var(--font-size-base); cursor: pointer;
-    background: var(--gray-100); color: var(--gray-600);
-    border: none; border-bottom: 3px solid transparent;
-    transition: all var(--transition-base); font-family: inherit;
-}
-body.dark-mode .auth-tab-btn { background: var(--gray-200); color: var(--gray-500); }
-.auth-tab-btn.active { background: white; color: var(--primary); border-bottom-color: var(--primary); }
-body.dark-mode .auth-tab-btn.active { background: var(--gray-100); color: var(--primary); }
-.auth-tab-btn:hover:not(.active) { background: var(--gray-200); }
-
-.auth-card { padding: var(--spacing-2xl); }
-.auth-card h3 { color: var(--primary); margin-bottom: var(--spacing-sm); }
-.card-subtitle { color: var(--gray-600); font-size: var(--font-size-sm); margin-bottom: var(--spacing-xl); }
-
-.auth-divider { border: none; border-top: 1px solid var(--gray-200); margin: var(--spacing-lg) 0; }
-.auth-link-row { text-align:center; font-size:var(--font-size-sm); color:var(--gray-600); margin-top:var(--spacing-md); }
-.auth-link-row a { color:var(--primary); font-weight:600; cursor:pointer; }
-.auth-link-row a:hover { color: var(--accent); }
-
-.hidden { display: none !important; }
-
-/* ========== FOOTER ========== */
-.footer { background:var(--primary); color:white; padding:var(--spacing-3xl) 0 var(--spacing-lg); }
-.footer-content { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:var(--spacing-2xl); margin-bottom:var(--spacing-2xl); }
-.footer-section h4 { color:white; margin-bottom:var(--spacing-lg); }
-.footer-section p { color:rgba(255,255,255,0.8); margin-bottom:var(--spacing-md); }
-.footer-section ul { list-style:none; }
-.footer-section ul li { margin-bottom:var(--spacing-md); }
-.footer-section a { color:rgba(255,255,255,0.8); transition:color var(--transition-fast); }
-.footer-section a:hover { color:var(--accent); }
-.social-links { display:flex; gap:var(--spacing-lg); margin-top:var(--spacing-lg); }
-.social-links a { width:40px; height:40px; background:rgba(255,255,255,0.1); border-radius:var(--radius-full); display:flex; align-items:center; justify-content:center; font-size:var(--font-size-lg); transition:all var(--transition-fast); }
-.social-links a:hover { background:var(--accent); color:var(--primary); }
-.footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:var(--spacing-lg); text-align:center; color:rgba(255,255,255,0.7); font-size:var(--font-size-sm); }
-
-/* ========== CHATBOT ========== */
-.chat-toggle { position:fixed; bottom:20px; right:20px; background:var(--primary); color:white; border:none; width:60px; height:60px; border-radius:50%; font-size:24px; cursor:pointer; box-shadow:var(--shadow-lg); z-index:1000; }
-.chatbot-container { position:fixed; bottom:90px; right:20px; width:320px; background:white; border-radius:var(--radius-lg); box-shadow:var(--shadow-xl); display:none; flex-direction:column; overflow:hidden; z-index:1000; }
-body.dark-mode .chatbot-container { background:var(--gray-100); }
-.chat-header { background:var(--primary); color:white; padding:12px; font-weight:bold; display:flex; justify-content:space-between; cursor:pointer; }
-.chat-body { height:300px; overflow-y:auto; padding:10px; display:flex; flex-direction:column; gap:10px; }
-.chat-message { padding:10px; border-radius:10px; max-width:80%; }
-.chat-message.bot { background:var(--gray-200); align-self:flex-start; }
-.chat-message.user { background:var(--primary); color:white; align-self:flex-end; }
-.chat-footer { display:flex; border-top:1px solid var(--gray-200); }
-.chat-footer input { flex:1; padding:10px; border:none; outline:none; font-family:inherit; }
-.chat-footer button { background:var(--primary); color:white; border:none; padding:10px 15px; cursor:pointer; }
-
-/* ========== ANIMATIONS ========== */
-@keyframes fadeInUp { from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
-
-/* ========== RESPONSIVE ========== */
-@media(max-width:1024px){.container{padding:0 var(--spacing-lg);}section{padding:var(--spacing-2xl) 0;}}
-@media(max-width:768px){
-    :root{--font-size-5xl:2rem;--font-size-4xl:1.75rem;--font-size-3xl:1.5rem;--font-size-2xl:1.25rem;}
-    .plans-grid,.features-grid{grid-template-columns:1fr;}
-    .plan-card-popular{transform:scale(1);}
-    .section-title{font-size:var(--font-size-3xl);}
-}
-@media(max-width:480px){
-    :root{--spacing-lg:1rem;--spacing-xl:1.5rem;}
-    .container{padding:0 var(--spacing-md);}
-    .btn{padding:var(--spacing-md) var(--spacing-lg);font-size:var(--font-size-sm);}
-    .hero-actions{flex-direction:column;}
-    .hero-actions .btn{width:100%;}
-}
+        /* Transition Delay Utilities */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+        .delay-500 { transition-delay: 500ms; }
     </style>
 </head>
 <body>
+    <!-- Background Orbs -->
+    <div class="orb w-96 h-96 bg-blue-600 top-[-10%] left-[-10%]"></div>
+    <div class="orb w-80 h-80 bg-emerald-600 bottom-[10%] right-[-5%]"></div>
 
-<!-- ===== HEADER ===== -->
-<header class="header">
-    <nav class="navbar container">
-        <div class="navbar-brand">
-            <span class="logo-text">WaslaTech</span>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+                    <i data-lucide="zap" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="font-display font-bold text-2xl tracking-tight">Wasla<span class="text-blue-500">Tech</span></span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#features" class="hover:text-blue-500 transition-colors">Features</a>
+                <a href="#founders" class="hover:text-blue-500 transition-colors">Founders</a>
+                <a href="#pricing" class="hover:text-blue-500 transition-colors">Pricing</a>
+                <button id="theme-toggle" type="button" title="Toggle theme" class="p-2 rounded-full hover:bg-white/10 transition-colors">
+                    <i data-lucide="moon" class="w-5 h-5 dark-icon"></i>
+                    <i data-lucide="sun" class="w-5 h-5 light-icon hidden"></i>
+                </button>
+                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full transition-all shadow-lg shadow-blue-500/20 btn-premium">Get Started</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button type="button" title="Toggle mobile menu" class="md:hidden p-2" id="mobile-menu-toggle">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
         </div>
 
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#founders" class="nav-link">Founders</a></li>
-            <li><a href="#plans" class="nav-link">Plans</a></li>
-            <li><a href="#features" class="nav-link">Features</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-            
-        </ul>
-
-        <div class="header-actions">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            <a href="#auth" class="btn btn-primary">Login / Sign Up</a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden glass border-t border-white/5 px-6 py-4">
+            <div class="flex flex-col gap-4 font-medium text-sm">
+                <a href="#features" class="hover:text-blue-500 transition-colors py-2">Features</a>
+                <a href="#founders" class="hover:text-blue-500 transition-colors py-2">Founders</a>
+                <a href="#pricing" class="hover:text-blue-500 transition-colors py-2">Pricing</a>
+                <button id="mobile-theme-toggle" type="button" title="Toggle theme" class="p-2 rounded-full hover:bg-white/10 transition-colors self-start">
+                    <i data-lucide="moon" class="w-5 h-5 dark-icon"></i>
+                    <i data-lucide="sun" class="w-5 h-5 light-icon hidden"></i>
+                </button>
+                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full transition-all shadow-lg shadow-blue-500/20 text-center btn-premium">Get Started</a>
+            </div>
         </div>
     </nav>
-</header>
 
-<!-- ===== HERO ===== -->
-<section id="home" class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1 class="hero-title">Enterprise Telecom Solutions for Modern Businesses</h1>
-            <p class="hero-subtitle">High-speed connectivity, reliable infrastructure, and world-class support for companies of all sizes</p>
-            <div class="hero-actions">
-                <a href="#plans" class="btn btn-primary btn-lg">View Plans</a>
-                <a href="#contact" class="btn btn-secondary btn-lg">Contact Sales</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section id="about" class="about">
-    <div class="container">
-        <h2 class="section-title">About WaslaTech</h2>
-        <div class="about-grid">
-            <div class="about-content">
-                <h3>Empowering Businesses Worldwide</h3>
-                <p>WaslaTech delivers enterprise-grade telecom solutions that keep your business connected, secure, and productive. With over 500+ corporate clients across 50+ countries, we've built a reputation for reliability and innovation.</p>
-                <p>Our mission is to provide seamless connectivity and cutting-edge solutions that enable businesses to thrive in a connected world.</p>
-            </div>
-            <div class="about-cards">
-                <div class="about-card">
-                    <div class="card-icon"><i class="fas fa-bullseye"></i></div>
-                    <h4>Our Mission</h4>
-                    <p>Deliver reliable, scalable telecom solutions that empower businesses globally</p>
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 px-6 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-sm font-semibold mb-8">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Trusted by 500+ businesses across MENA
                 </div>
-                <div class="about-card">
-                    <div class="card-icon"><i class="fas fa-eye"></i></div>
-                    <h4>Our Vision</h4>
-                    <p>Be the leading enterprise telecom provider trusted by businesses worldwide</p>
-                </div>
-                <div class="about-card">
-                    <div class="card-icon"><i class="fas fa-heart"></i></div>
-                    <h4>Our Values</h4>
-                    <p>Innovation, reliability, transparency, and customer success in everything we do</p>
+                <h1 class="font-display font-extrabold text-5xl lg:text-7xl leading-[1.1] mb-8">
+                    Transform Customer <br>
+                    <span class="text-gradient">Conversations</span> at Scale
+                </h1>
+                <p class="text-lg text-muted max-w-xl mb-10 leading-relaxed">
+                    The all-in-one WhatsApp Business API platform that helps you automate support, drive sales, and build lasting customer relationships.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/25 flex items-center gap-2 btn-premium">
+                        Start Your Free Trial <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="glass hover:bg-white/5 px-8 py-4 rounded-2xl font-bold transition-all flex items-center gap-2">
+                        <i data-lucide="play-circle" class="w-5 h-5"></i> Watch Demo
+                    </a>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== FOUNDERS ===== -->
-<section id="founders" class="founders">
-    <div class="container">
-        <h2 class="section-title">Meet Our Founders</h2>
-        <p class="section-subtitle">The team behind WaslaTech's success</p>
-        <div class="founders-grid">
-
-            <div class="founder-card">
-                <img src="Images/Mariam.jpeg" alt="Mariam Ahmed">
-                <h3>Mariam Ahmed</h3>
-                <p class="role">CEO & Founder</p>
-                <p>Visionary leader driving innovation and strategy (Head of Operations)</p>
-                <div class="socials"><i class="fab fa-linkedin"></i></div>
-            </div>
-
-            <div class="founder-card">
-                <img src="Images/Daniel.jpeg" alt="Daniel Amgad">
-                <h3>Daniel Amgad</h3>
-                <p class="role">Chief Website Developer & Data Analyst</p>
-                <p>Expert in web development & technology and relationship management.</p>
-                <div class="socials"><i class="fab fa-linkedin"></i></div>
-            </div>
-
-            <div class="founder-card">
-                <img src="Images/Faridaa.jpeg" alt="Farida Hussein">
-                <h3>Farida Hussein</h3>
-                <p class="role">Marketing Director</p>
-                <p>Leads global branding and campaigns and a problem solver.</p>
-                <div class="socials"><i class="fab fa-linkedin"></i></div>
-            </div>
-
-            <div class="founder-card">
-                <img src="Images/Souhaib.jpeg" alt="Souhaib Djelani">
-                <h3>Souhaib Djelani</h3>
-                <p class="role">Business Strategy Advisor</p>
-                <p>Business planning and strategy. Experienced in driving growth initiatives.</p>
-                <div class="socials"><i class="fab fa-linkedin"></i></div>
-            </div>
-
-            <div class="founder-card">
-                <img src="Images/Joudy.jpeg" alt="Joudy Ahmed">
-                <h3>Joudy Ahmed</h3>
-                <p class="role">UI/UX Designer</p>
-                <p>Designs user-friendly experiences and interfaces.</p>
-                <div class="socials"><i class="fab fa-linkedin"></i></div>
-            </div>
-
-            <div class="founder-card">
-                <img src="Images/Martin.jpeg" alt="Martin Medhat">
-                <h3>Martin Medhat</h3>
-                <p class="role">Operations Manager</p>
-                <p>Ensures smooth business operations and efficient resource allocation.</p>
-                <div class="socials"><i class="fab fa-linkedin"></i></div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ===== PLANS ===== -->
-<section id="plans" class="plans">
-    <div class="container">
-        <h2 class="section-title">Flexible Pricing Plans</h2>
-        <p class="section-subtitle">Choose the perfect plan for your business needs</p>
-        <div class="plans-grid">
-
-            <div class="plan-card">
-                <div class="plan-badge">Small</div>
-                <div class="plan-icon"><i class="fas fa-building"></i></div>
-                <h3 class="plan-name">Small Business</h3>
-                <div class="plan-price"><span class="price-amount">$99</span><span class="price-period">/month</span></div>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 500GB High-Speed Data</li>
-                    <li><i class="fas fa-check"></i> Business Email & Collaboration</li>
-                    <li><i class="fas fa-check"></i> 24/7 Customer Support</li>
-                    <li><i class="fas fa-check"></i> Secure Cloud Backup</li>
-                    <li><i class="fas fa-check"></i> VoIP & Video Conferencing</li>
-                </ul>
-                <button class="btn btn-primary btn-block" onclick="selectPlan('Small Business','$99/month')">Get Started</button>
-            </div>
-
-            <div class="plan-card plan-card-popular">
-                <div class="plan-badge popular-badge">Most Popular</div>
-                <div class="plan-icon"><i class="fas fa-city"></i></div>
-                <h3 class="plan-name">Medium Business</h3>
-                <div class="plan-price"><span class="price-amount">$199</span><span class="price-period">/month</span></div>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 2TB High-Speed Data</li>
-                    <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
-                    <li><i class="fas fa-check"></i> Priority Network Support</li>
-                    <li><i class="fas fa-check"></i> Multi-location Connectivity</li>
-                    <li><i class="fas fa-check"></i> Advanced Security Suite</li>
-                </ul>
-                <button class="btn btn-primary btn-block" onclick="selectPlan('Medium Business','$199/month')">Get Started</button>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-badge">Enterprise</div>
-                <div class="plan-icon"><i class="fas fa-industry"></i></div>
-                <h3 class="plan-name">Enterprise</h3>
-                <div class="plan-price"><span class="price-amount">Custom</span><span class="price-period">Pricing</span></div>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> Unlimited Data & Bandwidth</li>
-                    <li><i class="fas fa-check"></i> Dedicated Infrastructure & SLA</li>
-                    <li><i class="fas fa-check"></i> International Connectivity</li>
-                    <li><i class="fas fa-check"></i> Enterprise-grade Security</li>
-                    <li><i class="fas fa-check"></i> Onsite & Remote Support</li>
-                </ul>
-                <button class="btn btn-secondary btn-block" onclick="selectPlan('Enterprise','Custom Pricing')">Get Started</button>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ===== FEATURES ===== -->
-<section id="features" class="features">
-    <div class="container">
-        <h2 class="section-title">Why Choose WaslaTech</h2>
-        <p class="section-subtitle">Industry-leading features for enterprise success</p>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                <h4>Enterprise Security</h4>
-                <p>End-to-end encryption, VPN, and corporate-grade security for sensitive data protection</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-                <h4>High-Speed Network</h4>
-                <p>Lightning-fast fiber and 5G network optimized for business-critical applications</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-users"></i></div>
-                <h4>Dedicated Support</h4>
-                <p>Account managers and 24/7 technical support to ensure operations never stop</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-globe"></i></div>
-                <h4>Global Connectivity</h4>
-                <p>International bandwidth and low-latency connections for multi-national companies</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-cloud"></i></div>
-                <h4>Cloud Integration</h4>
-                <p>Seamless integration with corporate cloud services for backup and collaboration</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
-                <h4>Flexible Pricing</h4>
-                <p>Custom plans and scalable pricing to suit businesses of all sizes</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section id="contact" class="contact">
-    <div class="container">
-        <h2 class="section-title">Get in Touch</h2>
-        <p class="section-subtitle">Have questions? Our team is ready to help</p>
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <div class="info-item">
-                    <div class="info-icon"><i class="fas fa-phone"></i></div>
-                    <div>
-                        <h4>Phone</h4>
-                        <p>+966 1 234 5678</p>
-                        <p class="text-muted">Available 24/7</p>
+            <div class="relative reveal delay-200">
+                <div class="glass rounded-3xl p-4 shadow-2xl border-white/10 relative z-10">
+                    <div class="bg-gray-900/50 rounded-2xl overflow-hidden border border-white/5">
+                        <div class="px-6 py-4 border-b border-white/5 flex items-center justify-between">
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <span class="text-xs font-medium text-gray-500">WaslaTech Dashboard</span>
+                        </div>
+                        <div class="p-8 space-y-6">
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                                    <div class="text-blue-500 font-bold text-xl">12.4K</div>
+                                    <div class="text-[10px] text-gray-500 uppercase tracking-wider">Messages</div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                                    <div class="text-emerald-500 font-bold text-xl">98%</div>
+                                    <div class="text-[10px] text-gray-500 uppercase tracking-wider">Response</div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                                    <div class="text-purple-500 font-bold text-xl">2.1s</div>
+                                    <div class="text-[10px] text-gray-500 uppercase tracking-wider">Avg Time</div>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 text-xs font-bold">A</div>
+                                    <div class="bg-white/5 p-3 rounded-2xl rounded-tl-none text-sm max-w-[80%]">Hi, I need help with my order #12345</div>
+                                </div>
+                                <div class="flex gap-3 flex-row-reverse">
+                                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs font-bold">W</div>
+                                    <div class="bg-emerald-500/20 p-3 rounded-2xl rounded-tr-none text-sm max-w-[80%]">Your order has been shipped! Track it here.</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <h4>Email</h4>
-                        <p>WaslaTech.Telecom@Gmail.com</p>
-                        <p class="text-muted">Response within 2 hours</p>
+                <!-- Decorative elements -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/20 blur-3xl rounded-full"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500/20 blur-3xl rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 border-y border-white/5 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="text-center reveal">
+                <div class="text-4xl lg:text-5xl font-display font-extrabold mb-2 text-gradient">500+</div>
+                <div class="text-muted font-medium">Businesses Served</div>
+            </div>
+            <div class="text-center reveal delay-100">
+                <div class="text-4xl lg:text-5xl font-display font-extrabold mb-2 text-gradient">15+</div>
+                <div class="text-muted font-medium">Countries</div>
+            </div>
+            <div class="text-center reveal delay-200">
+                <div class="text-4xl lg:text-5xl font-display font-extrabold mb-2 text-gradient">10M+</div>
+                <div class="text-muted font-medium">Messages Sent</div>
+            </div>
+            <div class="text-center reveal delay-300">
+                <div class="text-4xl lg:text-5xl font-display font-extrabold mb-2 text-gradient">99.9%</div>
+                <div class="text-muted font-medium">Uptime</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section id="founders" class="py-32 px-6 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h2 class="font-display font-bold text-4xl lg:text-5xl mb-6">Meet the <span class="text-gradient">Founders</span></h2>
+                <p class="text-muted text-lg">Visionaries driving the future of customer communication in MENA</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mariam Ahmed -->
+                <div class="glass rounded-3xl p-8 glass-hover reveal">
+                    <div class="relative w-24 h-24 mb-8 mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-emerald-500 rounded-2xl rotate-6 opacity-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-tr from-blue-600 to-emerald-500 rounded-2xl flex items-center justify-center text-white font-display font-bold text-3xl shadow-xl">MA</div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-display font-bold text-2xl mb-1">Mariam Ahmed</h3>
+                        <p class="text-blue-500 font-semibold text-sm mb-4 uppercase tracking-widest">CEO</p>
+                        <p class="text-muted leading-relaxed">Former VP at Careem with 12+ years in tech. Led product teams across MENA.</p>
                     </div>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div>
-                        <h4>Location</h4>
-                        <p>Smart Village, Cairo, Egypt</p>
-                        <p class="text-muted">Regional offices available</p>
+
+                <!-- Daniel Amgad -->
+                <div class="glass rounded-3xl p-8 glass-hover reveal delay-100">
+                    <div class="relative w-24 h-24 mb-8 mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-blue-400 rounded-2xl rotate-6 opacity-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-tr from-emerald-500 to-blue-400 rounded-2xl flex items-center justify-center text-white font-display font-bold text-3xl shadow-xl">DA</div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-display font-bold text-2xl mb-1">Daniel Amgad</h3>
+                        <p class="text-emerald-500 font-semibold text-sm mb-4 uppercase tracking-widest">Head of Engineering</p>
+                        <p class="text-muted leading-relaxed">Ex-Amazon engineer with expertise in distributed systems.</p>
+                    </div>
+                </div>
+
+                <!-- Farida Hussein -->
+                <div class="glass rounded-3xl p-8 glass-hover reveal delay-200">
+                    <div class="relative w-24 h-24 mb-8 mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-400 to-blue-600 rounded-2xl rotate-6 opacity-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-tr from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center text-white font-display font-bold text-3xl shadow-xl">FH</div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-display font-bold text-2xl mb-1">Farida Hussein</h3>
+                        <p class="text-blue-400 font-semibold text-sm mb-4 uppercase tracking-widest">COO</p>
+                        <p class="text-muted leading-relaxed">Operations expert ensuring top-tier reliability and security.</p>
+                    </div>
+                </div>
+
+                <!-- Martin Medhat -->
+                <div class="glass rounded-3xl p-8 glass-hover reveal delay-300">
+                    <div class="relative w-24 h-24 mb-8 mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-500 rounded-2xl rotate-6 opacity-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-tr from-blue-600 to-purple-500 rounded-2xl flex items-center justify-center text-white font-display font-bold text-3xl shadow-xl">MM</div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-display font-bold text-2xl mb-1">Martin Medhat</h3>
+                        <p class="text-blue-500 font-semibold text-sm mb-4 uppercase tracking-widest">Operations Manager</p>
+                        <p class="text-muted leading-relaxed">An expert in the operation management field who, by his expertise, benefited the company in many ways.</p>
+                    </div>
+                </div>
+
+                <!-- Sohaib Djelani -->
+                <div class="glass rounded-3xl p-8 glass-hover reveal delay-400">
+                    <div class="relative w-24 h-24 mb-8 mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-emerald-400 to-blue-500 rounded-2xl rotate-6 opacity-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-tr from-emerald-400 to-blue-500 rounded-2xl flex items-center justify-center text-white font-display font-bold text-3xl shadow-xl">SD</div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-display font-bold text-2xl mb-1">Sohaib Djelani</h3>
+                        <p class="text-emerald-400 font-semibold text-sm mb-4 uppercase tracking-widest">Marketing Specialist</p>
+                        <p class="text-muted leading-relaxed">An expert in the Marketing field who, by his expertise, increased the company's share in the market by 15% in one year.</p>
+                    </div>
+                </div>
+
+                <!-- Judy Ahmed -->
+                <div class="glass rounded-3xl p-8 glass-hover reveal delay-500">
+                    <div class="relative w-24 h-24 mb-8 mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-purple-500 to-blue-400 rounded-2xl rotate-6 opacity-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-tr from-purple-500 to-blue-400 rounded-2xl flex items-center justify-center text-white font-display font-bold text-3xl shadow-xl">JA</div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-display font-bold text-2xl mb-1">Judy Ahmed</h3>
+                        <p class="text-purple-400 font-semibold text-sm mb-4 uppercase tracking-widest">Progress Analyst</p>
+                        <p class="text-muted leading-relaxed">An expert marketing analyst who helped the company to analyze many of its reports and fix many problems.</p>
                     </div>
                 </div>
             </div>
-
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="cName">Full Name *</label>
-                    <input type="text" id="cName" required placeholder="Your name" class="form-input">
-                    <span class="error-message" id="nameError"></span>
-                </div>
-                <div class="form-group">
-                    <label for="cCompany">Company Name *</label>
-                    <input type="text" id="cCompany" required placeholder="Your company" class="form-input">
-                    <span class="error-message" id="companyError"></span>
-                </div>
-                <div class="form-group">
-                    <label for="cEmail">Email Address *</label>
-                    <input type="email" id="cEmail" required placeholder="your.email@company.com" class="form-input">
-                    <span class="error-message" id="emailError"></span>
-                </div>
-                <div class="form-group">
-                    <label for="cPhone">Phone Number *</label>
-                    <input type="tel" id="cPhone" required placeholder="+966 1 234 5678" class="form-input">
-                    <span class="error-message" id="phoneError"></span>
-                </div>
-                <div class="form-group">
-                    <label for="cMessage">Message *</label>
-                    <textarea id="cMessage" required placeholder="Tell us about your needs..." rows="5" class="form-input"></textarea>
-                    <span class="error-message" id="messageError"></span>
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
-                <p class="form-note">We'll get back to you within 24 hours</p>
-            </form>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== AUTH SECTION (Login / Sign Up) ===== -->
-<section id="auth" class="auth-section">
-    <div class="container">
-        <h2 class="section-title">My Account</h2>
-        <p class="section-subtitle">Login or create a new WaslaTech account</p>
-
-        <div class="auth-box">
-            <!-- TABS -->
-            <div class="auth-tabs">
-                <button class="auth-tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
-                <button class="auth-tab-btn" id="tabSignup" onclick="switchAuthTab('signup')">
-                    <i class="fas fa-user-plus"></i> Sign Up
-                </button>
+    <!-- Features Section -->
+    <section id="features" class="py-32 px-6 bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h2 class="font-display font-bold text-4xl lg:text-5xl mb-6">Everything You Need to <span class="text-gradient">Scale</span></h2>
+                <p class="text-muted text-lg">From automation to analytics, our platform provides all the tools you need.</p>
             </div>
 
-            <!-- LOGIN -->
-            <div class="auth-card" id="loginCard">
-                <h3>Welcome back</h3>
-                <p class="card-subtitle">Sign in to your WaslaTech account</p>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="loginEmail">Email Address</label>
-                        <input type="email" id="loginEmail" class="form-input" placeholder="you@company.com" required>
-                        <span class="error-message" id="loginEmailError"></span>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass rounded-3xl p-10 glass-hover reveal">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i data-lucide="bot" class="text-blue-500 w-8 h-8"></i>
                     </div>
-                    <div class="form-group">
-                        <label for="loginPassword">Password</label>
-                        <input type="password" id="loginPassword" class="form-input" placeholder="Your password" required>
-                        <span class="error-message" id="loginPasswordError"></span>
+                    <h3 class="font-display font-bold text-2xl mb-4">Smart Automation</h3>
+                    <p class="text-muted leading-relaxed">Build intelligent chatbots with our visual flow builder. Automate FAQs, order tracking, and support workflows without coding.</p>
+                </div>
+                <div class="glass rounded-3xl p-10 glass-hover reveal delay-100">
+                    <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i data-lucide="inbox" class="text-emerald-500 w-8 h-8"></i>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+                    <h3 class="font-display font-bold text-2xl mb-4">Team Inbox</h3>
+                    <p class="text-muted leading-relaxed">Collaborative inbox for your entire team. Assign conversations, add notes, and deliver consistent support.</p>
+                </div>
+                <div class="glass rounded-3xl p-10 glass-hover reveal delay-200">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i data-lucide="layers" class="text-purple-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-2xl mb-4">CRM Integration</h3>
+                    <p class="text-muted leading-relaxed">Seamlessly connect with Salesforce, HubSpot, Zoho, and custom CRMs to keep your data synchronized.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h2 class="font-display font-bold text-4xl lg:text-5xl mb-6">Simple, Transparent <span class="text-gradient">Pricing</span></h2>
+                <p class="text-muted text-lg">Start free and scale as you grow. No hidden fees.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter -->
+                <div class="glass rounded-3xl p-10 reveal">
+                    <div class="text-muted font-bold uppercase tracking-widest text-xs mb-4">Starter</div>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-5xl font-display font-extrabold">$99</span>
+                        <span class="text-muted">/mo</span>
+                    </div>
+                    <p class="text-sm text-muted mb-8">Perfect for small businesses starting their journey.</p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-emerald-500 w-5 h-5"></i> 1,000 conversations/mo</li>
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-emerald-500 w-5 h-5"></i> 3 team members</li>
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-emerald-500 w-5 h-5"></i> Basic automation</li>
+                    </ul>
+                    <a href="#contact" class="block text-center py-4 rounded-2xl border border-white/10 hover:bg-white/5 transition-all font-bold">Get Started</a>
+                </div>
+
+                <!-- Pro -->
+                <div class="glass rounded-3xl p-10 border-blue-500/50 relative reveal delay-100">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">Most Popular</div>
+                    <div class="text-blue-500 font-bold uppercase tracking-widest text-xs mb-4">Professional</div>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-5xl font-display font-extrabold">$299</span>
+                        <span class="text-muted">/mo</span>
+                    </div>
+                    <p class="text-sm text-muted mb-8">For growing businesses with higher volume needs.</p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-blue-500 w-5 h-5"></i> 10,000 conversations/mo</li>
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-blue-500 w-5 h-5"></i> 10 team members</li>
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-blue-500 w-5 h-5"></i> Advanced flow builder</li>
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-blue-500 w-5 h-5"></i> CRM integrations</li>
+                    </ul>
+                    <a href="#contact" class="block text-center py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white transition-all font-bold shadow-xl shadow-blue-500/25 btn-premium">Start Free Trial</a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="glass rounded-3xl p-10 reveal delay-200">
+                    <div class="text-muted font-bold uppercase tracking-widest text-xs mb-4">Enterprise</div>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-5xl font-display font-extrabold">Custom</span>
+                    </div>
+                    <p class="text-sm text-muted mb-8">For large organizations requiring custom solutions.</p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-emerald-500 w-5 h-5"></i> Unlimited conversations</li>
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-emerald-500 w-5 h-5"></i> Dedicated account manager</li>
+                        <li class="flex items-center gap-3 text-sm"><i data-lucide="check" class="text-emerald-500 w-5 h-5"></i> Custom SLA & Security</li>
+                    </ul>
+                    <a href="#contact" class="block text-center py-4 rounded-2xl border border-white/10 hover:bg-white/5 transition-all font-bold">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6 relative">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <h2 class="font-display font-bold text-4xl lg:text-6xl mb-8 leading-tight">Ready to Transform Your <span class="text-gradient">Customer Experience?</span></h2>
+                <p class="text-muted text-lg mb-10">Join 500+ businesses that trust WaslaTech to power their WhatsApp communications.</p>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold">Email Us</div>
+                            <div class="text-muted">hello@waslatech.com</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold">Visit Us</div>
+                            <div class="text-muted">Cairo, Egypt</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass rounded-[2rem] p-10 reveal delay-200">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-muted uppercase tracking-widest" for="firstName">First Name</label>
+                            <input id="firstName" type="text" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="John">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-muted uppercase tracking-widest" for="lastName">Last Name</label>
+                            <input id="lastName" type="text" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="Doe">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-muted uppercase tracking-widest" for="email">Work Email</label>
+                        <input id="email" type="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="john@company.com">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-muted uppercase tracking-widest" for="message">Message</label>
+                        <textarea id="message" rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all resize-vertical" placeholder="How can we help?"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-5 rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/25 btn-premium">Send Message</button>
                 </form>
-                <hr class="auth-divider">
-                <p class="auth-link-row">Don't have an account? <a onclick="switchAuthTab('signup')">Sign up for free</a></p>
-            </div>
-
-            <!-- SIGNUP -->
-            <div class="auth-card hidden" id="signupCard">
-                <h3>Create an account</h3>
-                <p class="card-subtitle">Join WaslaTech and get connected today</p>
-                <form id="signupForm">
-                    <div class="form-group">
-                        <label for="signupName">Full Name</label>
-                        <input type="text" id="signupName" class="form-input" placeholder="Your full name" required>
-                        <span class="error-message" id="signupNameError"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="signupEmail">Email Address</label>
-                        <input type="email" id="signupEmail" class="form-input" placeholder="you@company.com" required>
-                        <span class="error-message" id="signupEmailError"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="signupPassword">Password</label>
-                        <input type="password" id="signupPassword" class="form-input" placeholder="Min. 6 chars, 1 uppercase, 1 number" required>
-                        <span class="error-message" id="signupPasswordError"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" class="form-input" placeholder="Repeat your password" required>
-                        <span class="error-message" id="confirmPasswordError"></span>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-lg">Create Account</button>
-                </form>
-                <hr class="auth-divider">
-                <p class="auth-link-row">Already have an account? <a onclick="switchAuthTab('login')">Login here</a></p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>WaslaTech</h4>
-                <p>Enterprise telecom solutions connecting businesses worldwide</p>
-                <div class="social-links">
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <i data-lucide="zap" class="text-white w-5 h-5"></i>
                 </div>
+                <span class="font-display font-bold text-xl">WaslaTech</span>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#plans">Plans</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#auth">Login / Sign Up</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">Status Page</a></li>
-                    <li><a href="#">Contact Support</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Security</a></li>
-                    <li><a href="#">Compliance</a></li>
-                </ul>
+            <div class="text-muted text-sm">© 2026 WaslaTech. All rights reserved.</div>
+            <div class="flex gap-6">
+                <a href="#" class="text-muted hover:text-blue-500 transition-colors" aria-label="Twitter"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                <a href="#" class="text-muted hover:text-blue-500 transition-colors" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="text-muted hover:text-blue-500 transition-colors" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 WaslaTech. All rights reserved. | Connecting businesses worldwide</p>
-        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="fixed bottom-8 right-8 z-[100] animate-bounce">
+        <button id="chat-toggle" class="w-16 h-16 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center text-white shadow-2xl shadow-blue-500/40 hover:scale-110 transition-all" aria-label="Chat with us">
+            <i data-lucide="message-circle" class="w-8 h-8"></i>
+        </button>
     </div>
-</footer>
 
-<!-- ===== CHATBOT ===== -->
-<div class="chatbot-container" id="chatbot">
-    <div class="chat-header" onclick="toggleChat()">
-        <span>WaslaTech Assistant</span>
-        <i class="fas fa-times"></i>
-    </div>
-    <div class="chat-body" id="chatBody">
-        <div class="chat-message bot">Hello 👋 I'm WaslaTech Assistant. How can I help you today?</div>
-    </div>
-    <div class="chat-footer">
-        <input type="text" id="chatInput" placeholder="Type a message..." />
-        <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-    </div>
-</div>
-<button class="chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-<!-- ===== JAVASCRIPT ===== -->
-<script>
-/* ---- THEME ---- */
-class ThemeManager {
-    constructor() {
-        this.btn = document.getElementById('themeToggle');
-        this.key = 'waslatech-theme';
-        this.init();
-    }
-    init() {
-        localStorage.getItem(this.key) === 'dark' ? this.dark() : this.light();
-        if (this.btn) this.btn.addEventListener('click', () => this.toggle());
-    }
-    toggle() { document.body.classList.contains('dark-mode') ? this.light() : this.dark(); }
-    dark()  { document.body.classList.add('dark-mode');    localStorage.setItem(this.key,'dark');  this.icon(); }
-    light() { document.body.classList.remove('dark-mode'); localStorage.setItem(this.key,'light'); this.icon(); }
-    icon()  { if(this.btn) this.btn.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; }
-}
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            const darkIcons = document.querySelectorAll('.dark-icon');
+            const lightIcons = document.querySelectorAll('.light-icon');
+            
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            
+            darkIcons.forEach(icon => icon.classList.toggle('hidden', isLight));
+            lightIcons.forEach(icon => icon.classList.toggle('hidden', !isLight));
+            
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
 
-/* ---- MOBILE MENU ---- */
-class MobileMenu {
-    constructor() {
-        this.btn   = document.getElementById('mobileMenuBtn');
-        this.links = document.getElementById('navLinks');
-        if (this.btn) this.btn.addEventListener('click', () => this.links.classList.toggle('active'));
-        if (this.links) this.links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => this.links.classList.remove('active')));
-    }
-}
+        // Theme toggle buttons
+        document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+        document.getElementById('mobile-theme-toggle')?.addEventListener('click', toggleTheme);
 
-/* ---- HELPERS ---- */
-function isEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
-function isPhone(p) { return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(p.replace(/\s/g,'')); }
-function showErr(id, msg) { const el=document.getElementById(id); if(el){el.textContent=msg; el.style.display='block';} }
-function clearErrs() { document.querySelectorAll('.error-message').forEach(el=>{el.textContent=''; el.style.display='none';}); }
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.querySelectorAll('.dark-icon').forEach(icon => icon.classList.add('hidden'));
+            document.querySelectorAll('.light-icon').forEach(icon => icon.classList.remove('hidden'));
+        }
 
-/* ---- CONTACT FORM ---- */
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault(); clearErrs();
-    const name=document.getElementById('cName').value.trim();
-    const company=document.getElementById('cCompany').value.trim();
-    const email=document.getElementById('cEmail').value.trim();
-    const phone=document.getElementById('cPhone').value.trim();
-    const msg=document.getElementById('cMessage').value.trim();
-    let ok=true;
-    if(!name||name.length<2)     {showErr('nameError','Name must be at least 2 characters');ok=false;}
-    if(!company||company.length<2){showErr('companyError','Company must be at least 2 characters');ok=false;}
-    if(!email||!isEmail(email))   {showErr('emailError','Enter a valid email address');ok=false;}
-    if(!phone||!isPhone(phone))   {showErr('phoneError','Enter a valid phone number');ok=false;}
-    if(!msg||msg.length<10)       {showErr('messageError','Message must be at least 10 characters');ok=false;}
-    if(ok){ alert('Thank you! We will get back to you within 24 hours.'); this.reset(); }
-});
-
-/* ---- LOGIN FORM ---- */
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault(); clearErrs();
-    const email=document.getElementById('loginEmail').value.trim();
-    const pass=document.getElementById('loginPassword').value;
-    let ok=true;
-    if(!email||!isEmail(email)) {showErr('loginEmailError','Enter a valid email address');ok=false;}
-    if(!pass||pass.length<6)    {showErr('loginPasswordError','Password must be at least 6 characters');ok=false;}
-    if(ok){ alert('Login successful! Welcome back to WaslaTech.'); this.reset(); }
-});
-
-/* ---- SIGNUP FORM ---- */
-document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault(); clearErrs();
-    const name=document.getElementById('signupName').value.trim();
-    const email=document.getElementById('signupEmail').value.trim();
-    const pass=document.getElementById('signupPassword').value;
-    const conf=document.getElementById('confirmPassword').value;
-    let ok=true;
-    if(!name||name.length<2)     {showErr('signupNameError','Name must be at least 2 characters');ok=false;}
-    if(!email||!isEmail(email))  {showErr('signupEmailError','Enter a valid email address');ok=false;}
-    if(!pass||pass.length<6)     {showErr('signupPasswordError','Password must be at least 6 characters');ok=false;}
-    else if(!/[A-Z]/.test(pass)) {showErr('signupPasswordError','Must contain at least one uppercase letter');ok=false;}
-    else if(!/[0-9]/.test(pass)) {showErr('signupPasswordError','Must contain at least one number');ok=false;}
-    if(pass!==conf)              {showErr('confirmPasswordError','Passwords do not match');ok=false;}
-    if(ok){ alert('Account created! Check your email to verify.'); this.reset(); switchAuthTab('login'); }
-});
-
-/* ---- AUTH TABS ---- */
-function switchAuthTab(tab) {
-    clearErrs();
-    document.getElementById('loginCard').classList.toggle('hidden', tab!=='login');
-    document.getElementById('signupCard').classList.toggle('hidden', tab!=='signup');
-    document.getElementById('tabLogin').classList.toggle('active', tab==='login');
-    document.getElementById('tabSignup').classList.toggle('active', tab==='signup');
-}
-
-/* ---- PLAN SELECTION ---- */
-function selectPlan(name, price) {
-    alert(`You selected the ${name} plan (${price}). Our sales team will contact you shortly.`);
-    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
-}
-
-/* ---- CHATBOT ---- */
-function toggleChat() {
-    const c=document.getElementById('chatbot');
-    c.style.display = c.style.display==='flex' ? 'none' : 'flex';
-}
-function sendMessage() {
-    const inp=document.getElementById('chatInput');
-    const msg=inp.value.trim(); if(!msg) return;
-    addMsg(msg,'user'); inp.value='';
-    setTimeout(()=>addMsg(getBotReply(msg),'bot'),500);
-}
-function addMsg(text,sender) {
-    const cb=document.getElementById('chatBody');
-    const d=document.createElement('div');
-    d.classList.add('chat-message',sender);
-    d.textContent=text; cb.appendChild(d); cb.scrollTop=cb.scrollHeight;
-}
-function getBotReply(m) {
-    m=m.toLowerCase();
-    if(m.includes('hello')||m.includes('hi')) return "Hello 👋 How can I assist you today?";
-    if(m.includes('about')||m.includes('who are you')) return "WaslaTech is a leading enterprise telecom provider offering high-speed connectivity and dedicated business support worldwide.";
-    if(m.includes('service')||m.includes('what do you do')) return "We provide enterprise telecom: high-speed internet, secure connectivity, VoIP, and cloud integration.";
-    if(m.includes('price')||m.includes('plan')||m.includes('cost')) return "Plans: Small ($99/mo), Medium ($199/mo), Enterprise (custom). Check the Plans section for details!";
-    if(m.includes('login')||m.includes('sign up')||m.includes('account')) return "Scroll down to the Login / Sign Up section or click the button in the header!";
-    if(m.includes('contact')) return "Reach us via the Contact form, call +966 1 234 5678, or email WaslaTech.Telecom@Gmail.com 📞";
-    if(m.includes('support')) return "We offer 24/7 enterprise support for all plans.";
-    if(m.includes('founder')||m.includes('team')) return "Founded by Mariam Ahmed, Daniel Amgad, Souhaib Djelani, Joudy Ahmed, Farida Hussein & Martin Medhat. See the Founders section!";
-    if(m.includes('thank')) return "You're welcome! Have a great day! 😊";
-    if(m.includes('error')||m.includes('problem')||m.includes('not working')) return "Sorry to hear that. Please use the Contact form and our team will help you quickly.";
-    return "Great question! Use the Contact form and our team will get back to you.";
-}
-
-/* ---- INIT ---- */
-document.addEventListener('DOMContentLoaded', () => {
-    new ThemeManager();
-    new MobileMenu();
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', function(e) {
-            e.preventDefault();
-            const t=document.querySelector(this.getAttribute('href'));
-            if(t) t.scrollIntoView({behavior:'smooth'});
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuToggle?.addEventListener('click', () => {
+            mobileMenu?.classList.toggle('open');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (mobileMenu?.classList.contains('open')) {
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
         });
-    });
-    const ci=document.getElementById('chatInput');
-    if(ci) ci.addEventListener('keypress', e=>{ if(e.key==='Enter') sendMessage(); });
-});
-</script>
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu?.classList.remove('open');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // Reveal Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu?.classList.remove('open');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                }
+            });
+        });
+
+        // Form Submission with validation
+        document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simple client-side validation
+            if (data.email && !/\S+@\S+\.\S+/.test(data.email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you! Your message has been sent. We will get back to you shortly.');
+                e.target.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Chat widget toggle
+        document.getElementById('chat-toggle')?.addEventListener('click', () => {
+            alert('Chat feature coming soon! Contact us at hello@waslatech.com');
+        });
+
+        // Prevent body scroll when mobile menu is open (optional enhancement)
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && mobileMenu?.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            }
+        });
+    </script>
 </body>
 </html>
