@@ -7,9 +7,15 @@
     <meta name="keywords" content="telecom, business connectivity, VoIP, enterprise solutions">
     <meta name="author" content="WaslaTech">
     <title>WaslaTech - Enterprise Telecom Solutions</title>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FONT AWESOME (ICONS) - THIS WAS MISSING -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
 /* ========== CSS VARIABLES & THEME ========== */
 :root {
@@ -678,7 +684,7 @@ section { padding: var(--spacing-4xl) 0; }
     transform: translateY(-2px);
 }
 
-/* ========== PLANS ========== */
+/* ========== PLANS & SHOPPING ========== */
 .plans {
     background: var(--surface-sunken);
     position: relative;
@@ -686,7 +692,7 @@ section { padding: var(--spacing-4xl) 0; }
 
 .plans-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-xl);
     align-items: start;
 }
@@ -809,6 +815,71 @@ section { padding: var(--spacing-4xl) 0; }
     color: var(--success);
     font-size: var(--font-size-base);
     margin-top: 2px;
+}
+
+/* Product Cards for Shopping */
+.product-section {
+    margin-top: var(--spacing-4xl);
+    padding-top: var(--spacing-4xl);
+    border-top: 1px solid var(--border);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.product-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-xl);
+    text-align: center;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.product-image {
+    width: 100%;
+    height: 180px;
+    background: var(--surface-sunken);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: 4rem;
+    color: var(--accent);
+}
+
+.product-name {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.product-desc {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    min-height: 40px;
+}
+
+.product-price {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: var(--spacing-lg);
 }
 
 @media (max-width: 768px) {
@@ -1374,130 +1445,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
         transition-duration: 0.01ms !important;
     }
 }
-
-/* ========== CHATBOT STYLES ========== */
-
-/* The Floating Orange Button */
-.chat-toggle {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #16a2f9, #0c13ea); /* Orange gradient */
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(22, 238, 249, 0.4);
-    z-index: 9999; /* Ensures it sits on top of everything */
-    display: flex; /* Centers the icon */
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.chat-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 12px 24px rgb(22, 249, 241);
-}
-
-/* The Chat Window */
-.chatbot-container {
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    width: 350px;
-    height: 450px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    display: none; /* Hidden by default */
-    flex-direction: column;
-    z-index: 9998;
-    overflow: hidden;
-}
-
-/* Header */
-.chat-header {
-    background: #0f172a;
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-}
-.chat-close { 
-    background: none; 
-    border: none; 
-    cursor: pointer; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Body */
-.chat-body {
-    flex: 1;
-    padding: 1rem;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    background: var(--surface-sunken);
-}
-
-/* Messages */
-.chat-message {
-    max-width: 80%;
-    padding: 0.8rem 1rem;
-    border-radius: 1rem;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-.chat-message.bot {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    align-self: flex-start;
-    color: var(--text-primary);
-}
-.chat-message.user {
-    background: #16cff9;
-    color: white;
-    align-self: flex-end;
-}
-
-/* Footer Input */
-.chat-footer {
-    padding: 0.8rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    gap: 0.5rem;
-    background: var(--surface);
-}
-.chat-input {
-    flex: 1;
-    padding: 0.6rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 2rem;
-    outline: none;
-    font-family: inherit;
-}
-.chat-send {
-    background: #1652f9;
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-}
-.chat-send:hover { background: #0ceae6; }
     </style>
 </head>
 <body>
@@ -1515,7 +1462,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
             <li><a href="#home" class="nav-link">Home</a></li>
             <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#founders" class="nav-link">Founders</a></li>
-            <li><a href="#plans" class="nav-link">Plans</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
             <li><a href="#features" class="nav-link">Features</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
@@ -1540,7 +1487,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
             <h1 class="hero-title">Connect Your Business with <span class="text-gradient">Unmatched Reliability</span></h1>
             <p class="hero-subtitle">High-speed connectivity, dedicated support, and scalable infrastructure designed for modern enterprises ready to grow without limits.</p>
             <div class="hero-actions">
-                <a href="#plans" class="btn btn-primary btn-lg">Explore Plans</a>
+                <a href="#services" class="btn btn-primary btn-lg">View Plans</a>
                 <a href="#contact" class="btn btn-secondary btn-lg">Talk to Sales</a>
             </div>
             <div class="hero-stats">
@@ -1610,9 +1557,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <h3>Mariam Ahmed</h3>
                 <p class="founder-role">CEO and Founder</p>
                 <p>Visionary leader driving innovation and strategy. Head of Operations with expertise in scaling enterprises.</p>
-                <div class="founder-socials">
-                    
-                </div>
             </div>
 
             <div class="founder-card animate-in animate-in-delay-2">
@@ -1620,9 +1564,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <h3>Daniel Amgad</h3>
                 <p class="founder-role">Chief Developer and Data Analyst</p>
                 <p>Expert in web development, technology architecture, and data-driven relationship management.</p>
-                <div class="founder-socials">
-                    
-                </div>
             </div>
 
             <div class="founder-card animate-in animate-in-delay-3">
@@ -1630,9 +1571,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <h3>Farida Hussein</h3>
                 <p class="founder-role">Marketing Director</p>
                 <p>Leads global branding and campaigns. A strategic problem solver with creative vision.</p>
-                <div class="founder-socials">
-                    
-                </div>
             </div>
 
             <div class="founder-card animate-in animate-in-delay-4">
@@ -1640,9 +1578,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <h3>Souhaib Djelani</h3>
                 <p class="founder-role">Business Strategy Advisor</p>
                 <p>Business planning and strategy expert. Experienced in driving sustainable growth initiatives.</p>
-                <div class="founder-socials">
-                  
-                </div>
             </div>
 
             <div class="founder-card animate-in animate-in-delay-5">
@@ -1650,9 +1585,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <h3>Joudy Ahmed</h3>
                 <p class="founder-role">UI/UX Designer</p>
                 <p>Designs intuitive user experiences and interfaces with a focus on accessibility and delight.</p>
-                <div class="founder-socials">
-                   
-                </div>
             </div>
 
             <div class="founder-card animate-in animate-in-delay-6">
@@ -1660,76 +1592,146 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <h3>Martin Medhat</h3>
                 <p class="founder-role">Operations Manager</p>
                 <p>Ensures smooth business operations and efficient resource allocation across all departments.</p>
-                <div class="founder-socials">
-                    
-                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== PLANS ===== -->
-<section id="plans" class="plans">
+<!-- ===== SERVICES & SHOP ===== -->
+<section id="services" class="plans">
     <div class="container">
         <div class="section-header">
-            <div class="section-label"><i class="fas fa-tags"></i> Pricing</div>
-            <h2 class="section-title">Flexible Plans for Every Business</h2>
-            <p class="section-subtitle">Choose the perfect plan tailored to your business needs with transparent pricing and no hidden fees.</p>
+            <div class="section-label"><i class="fas fa-tags"></i> Service & Product Suite</div>
+            <h2 class="section-title">Mobile Plans</h2>
+            <p class="section-subtitle">Choose the perfect plan tailored to your connectivity needs.</p>
         </div>
+        
+        <!-- Mobile Plans Grid -->
         <div class="plans-grid">
+            <!-- WaslaTech Plan -->
             <div class="plan-card animate-in animate-in-delay-1">
-                <div class="plan-badge">Small</div>
-                <div class="plan-icon"><i class="fas fa-building"></i></div>
-                <h3 class="plan-name">Small Business</h3>
+                <div class="plan-icon"><i class="fas fa-sim-card"></i></div>
+                <h3 class="plan-name">WaslaTech Plan</h3>
                 <div class="plan-price">
-                    <span class="price-currency">$</span>
-                    <span class="price-amount">59</span>
-                    <span class="price-period">/month</span>
+                    <span class="price-amount" style="font-size: var(--font-size-3xl);">Balanced</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 500GB High-Speed Data</li>
-                    <li><i class="fas fa-check"></i> Business Email Suite</li>
-                    <li><i class="fas fa-check"></i> 24/7 Customer Support</li>
-                    <li><i class="fas fa-check"></i> Secure Cloud Backup</li>
-                    <li><i class="fas fa-check"></i> VoIP and Video Conferencing</li>
+                    <li><i class="fas fa-check"></i> 20GB High-Speed Data</li>
+                    <li><i class="fas fa-check"></i> Unlimited Calls</li>
+                    <li><i class="fas fa-check"></i> Reliable Network Access</li>
+                    <li><i class="fas fa-check"></i> 24/7 Support</li>
                 </ul>
-                <button class="btn btn-secondary btn-block" onclick="selectPlan('Small Business', '$59/month')">Get Started</button>
+                <button class="btn btn-secondary btn-block" onclick="selectPlan('WaslaTech Plan', 'Balanced Package')">Subscribe</button>
             </div>
 
-            <div class="plan-card plan-card-featured animate-in animate-in-delay-2">
-                <div class="plan-badge plan-badge-featured">Most Popular</div>
-                <div class="plan-icon"><i class="fas fa-city"></i></div>
-                <h3 class="plan-name">Medium Business</h3>
+            <!-- Xtreme Plan -->
+            <div class="plan-card animate-in animate-in-delay-2">
+                <div class="plan-icon"><i class="fas fa-bolt"></i></div>
+                <h3 class="plan-name">Xtreme</h3>
                 <div class="plan-price">
-                    <span class="price-currency">$</span>
-                    <span class="price-amount">99</span>
-                    <span class="price-period">/month</span>
+                    <span class="price-amount" style="font-size: var(--font-size-3xl);">Flexible</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 2TB High-Speed Data</li>
-                    <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
-                    <li><i class="fas fa-check"></i> Priority Network Support</li>
-                    <li><i class="fas fa-check"></i> Multi-location Connectivity</li>
-                    <li><i class="fas fa-check"></i> Advanced Security Suite</li>
+                    <li><i class="fas fa-check"></i> Pay-for-what-you-use</li>
+                    <li><i class="fas fa-check"></i> Full Control Over Data</li>
+                    <li><i class="fas fa-check"></i> No Wasted Data</li>
+                    <li><i class="fas fa-check"></i> Real-time Usage Tracking</li>
                 </ul>
-                <button class="btn btn-primary btn-block" onclick="selectPlan('Medium Business', '$99/month')">Get Started</button>
+                <button class="btn btn-secondary btn-block" onclick="selectPlan('Xtreme Plan', 'Flexible Usage')">Subscribe</button>
             </div>
 
-            <div class="plan-card animate-in animate-in-delay-3">
-                <div class="plan-badge">Enterprise</div>
-                <div class="plan-icon"><i class="fas fa-industry"></i></div>
-                <h3 class="plan-name">Enterprise</h3>
+            <!-- Xpansion Plan (Featured) -->
+            <div class="plan-card plan-card-featured animate-in animate-in-delay-3">
+                <div class="plan-badge plan-badge-featured">Best Value</div>
+                <div class="plan-icon"><i class="fas fa-wifi"></i></div>
+                <h3 class="plan-name">Xpansion</h3>
                 <div class="plan-price">
-                    <span class="price-amount" style="font-size: var(--font-size-3xl);">Custom</span>
+                    <span class="price-amount" style="font-size: var(--font-size-3xl);">Complete</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> Unlimited Data and Bandwidth</li>
-                    <li><i class="fas fa-check"></i> Dedicated Infrastructure with SLA</li>
-                    <li><i class="fas fa-check"></i> International Connectivity</li>
-                    <li><i class="fas fa-check"></i> Enterprise-grade Security</li>
-                    <li><i class="fas fa-check"></i> Onsite and Remote Support</li>
+                    <li><i class="fas fa-check"></i> 600GB High-Speed Data</li>
+                    <li><i class="fas fa-check"></i> Free Fixed Router Included</li>
+                    <li><i class="fas fa-check"></i> 2 SIM Cards</li>
+                    <li><i class="fas fa-check"></i> Multi-device Connectivity</li>
                 </ul>
-                <button class="btn btn-secondary btn-block" onclick="selectPlan('Enterprise', 'Custom Pricing')">Contact Sales</button>
+                <button class="btn btn-primary btn-block" onclick="selectPlan('Xpansion Plan', 'Complete Bundle')">Subscribe</button>
+            </div>
+
+            <!-- Xclusive+ Plan -->
+            <div class="plan-card animate-in animate-in-delay-4">
+                <div class="plan-icon"><i class="fas fa-users"></i></div>
+                <h3 class="plan-name">Xclusive+</h3>
+                <div class="plan-price">
+                    <span class="price-amount" style="font-size: var(--font-size-3xl);">Family</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Shared Data Plans</li>
+                    <li><i class="fas fa-check"></i> Ideal for Families & Couples</li>
+                    <li><i class="fas fa-check"></i> Shared Usage Management</li>
+                    <li><i class="fas fa-check"></i> Cost-Effective Bundles</li>
+                </ul>
+                <button class="btn btn-secondary btn-block" onclick="selectPlan('Xclusive+ Plan', 'Family Bundle')">Subscribe</button>
+            </div>
+
+            <!-- Xcape Plan -->
+            <div class="plan-card animate-in animate-in-delay-5">
+                <div class="plan-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3 class="plan-name">Xcape</h3>
+                <div class="plan-price">
+                    <span class="price-amount" style="font-size: var(--font-size-3xl);">Student</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 15GB Dedicated Data</li>
+                    <li><i class="fas fa-check"></i> Access to Edu Platforms</li>
+                    <li><i class="fas fa-check"></i> Discounted Rates</li>
+                    <li><i class="fas fa-check"></i> Student Verification Required</li>
+                </ul>
+                <button class="btn btn-secondary btn-block" onclick="selectPlan('Xcape Plan', 'Student Plan')">Subscribe</button>
+            </div>
+        </div>
+
+        <!-- Hardware Products Section -->
+        <div class="product-section">
+            <div class="section-header">
+                <h2 class="section-title">Hardware Products</h2>
+                <p class="section-subtitle">Shop our range of connectivity devices and accessories.</p>
+            </div>
+            <div class="product-grid">
+                <!-- SIM Cards -->
+                <div class="product-card animate-in animate-in-delay-1">
+                    <div class="product-image"><i class="fas fa-sim-card"></i></div>
+                    <h3 class="product-name">SIM Cards</h3>
+                    <p class="product-desc">Reliable and affordable network access.</p>
+                    <div class="product-price">From $1.99</div>
+                    <button class="btn btn-primary btn-block" onclick="addToCart('SIM Card', 1.99)">Add to Cart</button>
+                </div>
+
+                <!-- eSIMs -->
+                <div class="product-card animate-in animate-in-delay-2">
+                    <div class="product-image"><i class="fas fa-microchip"></i></div>
+                    <h3 class="product-name">eSIMs</h3>
+                    <p class="product-desc">Instant digital activation for travelers.</p>
+                    <div class="product-price">$10.99</div>
+                    <button class="btn btn-primary btn-block" onclick="addToCart('eSIM', 10.99)">Add to Cart</button>
+                </div>
+
+                <!-- Portable Hotspots -->
+                <div class="product-card animate-in animate-in-delay-3">
+                    <div class="product-image"><i class="fas fa-hotdog"></i></div>
+                    <h3 class="product-name">Portable Hotspots</h3>
+                    <p class="product-desc">Compact, on-the-go internet devices.</p>
+                    <div class="product-price">$5.99</div>
+                    <button class="btn btn-primary btn-block" onclick="addToCart('Portable Hotspot', 5.99)">Add to Cart</button>
+                </div>
+
+                <!-- Fixed Routers -->
+                <div class="product-card animate-in animate-in-delay-4">
+                    <div class="product-image"><i class="fas fa-wifi"></i></div>
+                    <h3 class="product-name">Fixed Routers</h3>
+                    <p class="product-desc">High-speed, secure solutions for homes.</p>
+                    <div class="product-price">$30.99</div>
+                    <button class="btn btn-primary btn-block" onclick="addToCart('Fixed Router', 30.99)">Add to Cart</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1938,7 +1940,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#plans">Plans</a></li>
+                    <li><a href="#services">Plans</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -1978,75 +1980,13 @@ textarea.form-input { resize: vertical; min-height: 120px; }
     </div>
     <div class="chat-footer">
         <input type="text" id="chatInput" placeholder="Type a message..." />
-        <button onclick="sendMessage()">send<i class="fas fa-paper-plane"></i></button>
+        <button onclick="sendMessage()">Send <i class="fas fa-paper-plane"></i></button>
     </div>
 </div>
 <button class="chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
-    
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // --- CHATBOT LOGIC ---
-    const chatToggleBtn = document.getElementById('chatToggleBtn');
-    const chatContainer = document.getElementById('chatbotContainer');
-    const chatCloseBtn = document.getElementById('chatCloseBtn');
-    const chatInput = document.getElementById('chatInput');
-    const chatSendBtn = document.getElementById('chatSendBtn');
-    const chatBody = document.getElementById('chatBody');
-
-    // Open Chat
-    chatToggleBtn.addEventListener('click', function() {
-        chatContainer.style.display = 'flex';
-        chatToggleBtn.style.display = 'none'; // Hide toggle when open
-    });
-
-    // Close Chat
-    chatCloseBtn.addEventListener('click', function() {
-        chatContainer.style.display = 'none';
-        chatToggleBtn.style.display = 'flex'; // Show toggle when closed
-    });
-
-    // Send Message Function
-    function sendChat() {
-        const text = chatInput.value.trim();
-        if (!text) return;
-
-        // Add User Message
-        addMessage(text, 'user');
-        chatInput.value = '';
-
-        // Simple Bot Reply
-        setTimeout(() => {
-            const reply = getBotReply(text);
-            addMessage(reply, 'bot');
-        }, 600);
-    }
-
-    function addMessage(text, sender) {
-        const div = document.createElement('div');
-        div.classList.add('chat-message', sender);
-        div.textContent = text;
-        chatBody.appendChild(div);
-        chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll
-    }
-
-    function getBotReply(msg) {
-        msg = msg.toLowerCase();
-        if (msg.includes('hello') || msg.includes('hi')) return "Hello there! How can I assist you?";
-        if (msg.includes('price') || msg.includes('plan')) return "We have plans starting at $99/mo. Check the Plans section for details.";
-        if (msg.includes('contact')) return "You can reach us at WaslaTech.Telecom@Gmail.com.";
-        return "Thanks for your message. Our team will get back to you shortly.";
-    }
-
-    // Event Listeners for Sending
-    chatSendBtn.addEventListener('click', sendChat);
-    chatInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') sendChat();
-    });
-});
-
 /* ---- THEME ---- */
 class ThemeManager {
     constructor() {
@@ -2172,26 +2112,11 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
     let valid = true;
 
-    if (!name || name.length < 2) {
-        showError('nameError', 'Name must be at least 2 characters');
-        valid = false;
-    }
-    if (!company || company.length < 2) {
-        showError('companyError', 'Company must be at least 2 characters');
-        valid = false;
-    }
-    if (!email || !isEmail(email)) {
-        showError('emailError', 'Enter a valid email address');
-        valid = false;
-    }
-    if (!phone || !isPhone(phone)) {
-        showError('phoneError', 'Enter a valid phone number');
-        valid = false;
-    }
-    if (!message || message.length < 10) {
-        showError('messageError', 'Message must be at least 10 characters');
-        valid = false;
-    }
+    if (!name || name.length < 2) { showError('nameError', 'Name must be at least 2 characters'); valid = false; }
+    if (!company || company.length < 2) { showError('companyError', 'Company must be at least 2 characters'); valid = false; }
+    if (!email || !isEmail(email)) { showError('emailError', 'Enter a valid email address'); valid = false; }
+    if (!phone || !isPhone(phone)) { showError('phoneError', 'Enter a valid phone number'); valid = false; }
+    if (!message || message.length < 10) { showError('messageError', 'Message must be at least 10 characters'); valid = false; }
 
     if (valid) {
         alert('Thank you! We will get back to you within 24 hours.');
@@ -2203,67 +2128,34 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     clearErrors();
-
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
-
     let valid = true;
 
-    if (!email || !isEmail(email)) {
-        showError('loginEmailError', 'Enter a valid email address');
-        valid = false;
-    }
-    if (!password || password.length < 6) {
-        showError('loginPasswordError', 'Password must be at least 6 characters');
-        valid = false;
-    }
+    if (!email || !isEmail(email)) { showError('loginEmailError', 'Enter a valid email address'); valid = false; }
+    if (!password || password.length < 6) { showError('loginPasswordError', 'Password must be at least 6 characters'); valid = false; }
 
-    if (valid) {
-        alert('Login successful! Welcome back to WaslaTech.');
-        this.reset();
-    }
+    if (valid) { alert('Login successful! Welcome back to WaslaTech.'); this.reset(); }
 });
 
 /* ---- SIGNUP FORM ---- */
 document.getElementById('signupForm').addEventListener('submit', function(e) {
     e.preventDefault();
     clearErrors();
-
     const name = document.getElementById('signupName').value.trim();
     const email = document.getElementById('signupEmail').value.trim();
     const password = document.getElementById('signupPassword').value;
     const confirm = document.getElementById('confirmPassword').value;
-
     let valid = true;
 
-    if (!name || name.length < 2) {
-        showError('signupNameError', 'Name must be at least 2 characters');
-        valid = false;
-    }
-    if (!email || !isEmail(email)) {
-        showError('signupEmailError', 'Enter a valid email address');
-        valid = false;
-    }
-    if (!password || password.length < 6) {
-        showError('signupPasswordError', 'Password must be at least 6 characters');
-        valid = false;
-    } else if (!/[A-Z]/.test(password)) {
-        showError('signupPasswordError', 'Must contain at least one uppercase letter');
-        valid = false;
-    } else if (!/[0-9]/.test(password)) {
-        showError('signupPasswordError', 'Must contain at least one number');
-        valid = false;
-    }
-    if (password !== confirm) {
-        showError('confirmPasswordError', 'Passwords do not match');
-        valid = false;
-    }
+    if (!name || name.length < 2) { showError('signupNameError', 'Name must be at least 2 characters'); valid = false; }
+    if (!email || !isEmail(email)) { showError('signupEmailError', 'Enter a valid email address'); valid = false; }
+    if (!password || password.length < 6) { showError('signupPasswordError', 'Password must be at least 6 characters'); valid = false; }
+    else if (!/[A-Z]/.test(password)) { showError('signupPasswordError', 'Must contain at least one uppercase letter'); valid = false; }
+    else if (!/[0-9]/.test(password)) { showError('signupPasswordError', 'Must contain at least one number'); valid = false; }
+    if (password !== confirm) { showError('confirmPasswordError', 'Passwords do not match'); valid = false; }
 
-    if (valid) {
-        alert('Account created! Check your email to verify.');
-        this.reset();
-        switchAuthTab('login');
-    }
+    if (valid) { alert('Account created! Check your email to verify.'); this.reset(); switchAuthTab('login'); }
 });
 
 /* ---- AUTH TABS ---- */
@@ -2277,8 +2169,13 @@ function switchAuthTab(tab) {
 
 /* ---- PLAN SELECTION ---- */
 function selectPlan(name, price) {
-    alert('You selected the ' + name + ' plan (' + price + '). Our sales team will contact you shortly.');
+    alert('You selected the ' + name + ' (' + price + '). Redirecting to contact form.');
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ---- SHOPPING CART (Basic Alert Simulation) ---- */
+function addToCart(product, price) {
+    alert('Added ' + product + ' ($' + price + ') to cart! (Demo Function)');
 }
 
 /* ---- CHATBOT ---- */
@@ -2295,9 +2192,7 @@ function sendMessage() {
     addMessage(message, 'user');
     input.value = '';
 
-    setTimeout(function() {
-        addMessage(getBotReply(message), 'bot');
-    }, 500);
+    setTimeout(function() { addMessage(getBotReply(message), 'bot'); }, 500);
 }
 
 function addMessage(text, sender) {
@@ -2311,38 +2206,16 @@ function addMessage(text, sender) {
 
 function getBotReply(msg) {
     msg = msg.toLowerCase();
-
-    if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
-        return 'Hello! How can I assist you today?';
-    }
-    if (msg.includes('about') || msg.includes('who are you')) {
-        return 'WaslaTech is a leading enterprise telecom provider offering high-speed connectivity and dedicated business support worldwide.';
-    }
-    if (msg.includes('service') || msg.includes('what do you do')) {
-        return 'We provide enterprise telecom: high-speed internet, secure connectivity, VoIP, and cloud integration.';
-    }
-    if (msg.includes('price') || msg.includes('plan') || msg.includes('cost')) {
-        return 'Plans: Small ($99/mo), Medium ($199/mo), Enterprise (custom). Check the Plans section for details!';
-    }
-    if (msg.includes('login') || msg.includes('sign up') || msg.includes('account')) {
-        return 'Scroll down to the Account section or click Login in the header!';
-    }
-    if (msg.includes('contact') || msg.includes('reach')) {
-        return 'Reach us via the Contact form, call +966 1 234 5678, or email WaslaTech.Telecom@Gmail.com';
-    }
-    if (msg.includes('support') || msg.includes('help')) {
-        return 'We offer 24/7 enterprise support for all plans. Use the Contact form for immediate assistance.';
-    }
-    if (msg.includes('founder') || msg.includes('team') || msg.includes('leadership')) {
-        return 'Founded by Mariam Ahmed, Daniel Amgad, Farida Hussein, Souhaib Djelani, Joudy Ahmed, and Martin Medhat. See the Founders section!';
-    }
-    if (msg.includes('thank')) {
-        return 'You are welcome! Have a great day!';
-    }
-    if (msg.includes('error') || msg.includes('problem') || msg.includes('issue')) {
-        return 'Sorry to hear that. Please use the Contact form and our team will help you quickly.';
-    }
-
+    if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) return 'Hello! How can I assist you today?';
+    if (msg.includes('about') || msg.includes('who are you')) return 'WaslaTech is a leading enterprise telecom provider offering high-speed connectivity and dedicated business support worldwide.';
+    if (msg.includes('service') || msg.includes('what do you do')) return 'We provide enterprise telecom: high-speed internet, secure connectivity, VoIP, and cloud integration.';
+    if (msg.includes('price') || msg.includes('plan') || msg.includes('cost')) return 'We have multiple plans: WaslaTech Plan (Balanced), Xtreme (Flexible), Xpansion (Bundle), Xclusive+ (Family), and Xcape (Student). Check the Services section!';
+    if (msg.includes('login') || msg.includes('sign up') || msg.includes('account')) return 'Scroll down to the Account section or click Login in the header!';
+    if (msg.includes('contact') || msg.includes('reach')) return 'Reach us via the Contact form, call +966 1 234 5678, or email WaslaTech.Telecom@Gmail.com';
+    if (msg.includes('support') || msg.includes('help')) return 'We offer 24/7 enterprise support for all plans. Use the Contact form for immediate assistance.';
+    if (msg.includes('founder') || msg.includes('team') || msg.includes('leadership')) return 'Founded by Mariam Ahmed, Daniel Amgad, Farida Hussein, Souhaib Djelani, Joudy Ahmed, and Martin Medhat. See the Founders section!';
+    if (msg.includes('thank')) return 'You are welcome! Have a great day!';
+    if (msg.includes('error') || msg.includes('problem') || msg.includes('issue')) return 'Sorry to hear that. Please use the Contact form and our team will help you quickly.';
     return 'Great question! Use the Contact form and our team will get back to you shortly.';
 }
 
@@ -2356,18 +2229,14 @@ document.addEventListener('DOMContentLoaded', function() {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
         });
     });
 
     const chatInput = document.getElementById('chatInput');
     if (chatInput) {
         chatInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
+            if (e.key === 'Enter') { sendMessage(); }
         });
     }
 });
