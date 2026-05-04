@@ -1494,7 +1494,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <li><a href="#features" class="nav-link">Features</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="#auth" class="nav-link">Login</a></li>
             </ul>
 
             <div class="header-actions">
@@ -1716,10 +1715,11 @@ textarea.form-input { resize: vertical; min-height: 120px; }
             <div class="plan-card animate-in animate-in-delay-1">
                 <div class="plan-icon"><i class="fas fa-sim-card"></i></div>
                 <h3 class="plan-name">WaslaTech Plan</h3>
-                
                 <div class="plan-price">
                     <span class="price-amount" style="font-size: var(--font-size-3xl);">Balanced</span>
-                    <h4>$59</h4>
+                    <div>
+                        <h4>$57</h4>
+                    </div>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fas fa-check"></i> 20GB High-Speed Data</li>
@@ -1754,7 +1754,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <h3 class="plan-name">Xpansion</h3>
                 <div class="plan-price">
                     <span class="price-amount" style="font-size: var(--font-size-3xl);">Complete</span>
-                    <h4>$79</h4>
+                    <h4>$73</h4>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fas fa-check"></i> 600GB High-Speed Data</li>
@@ -1769,7 +1769,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
             <div class="plan-card animate-in animate-in-delay-4">
                 <div class="plan-icon"><i class="fas fa-home"></i></div>
                 <h3 class="plan-name">Xclusive+</h3>
-                
                 <div class="plan-price">
                     <span class="price-amount" style="font-size: var(--font-size-3xl);">Family</span>
                     <h4>$89</h4>
@@ -1789,7 +1788,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 <h3 class="plan-name">Xcape</h3>
                 <div class="plan-price">
                     <span class="price-amount" style="font-size: var(--font-size-3xl);">Student</span>
-                    <h4>$49</h4>
+                    <h4>$45</h4>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fas fa-check"></i> 50GB Data</li>
@@ -1875,7 +1874,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                     <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div>
                         <h4>Address</h4>
-                        <p>123 Tech Boulevard, Innovation City, IC 12345</p>
+                        <p>Smart village, Giza, Egypt</p>
                         <p class="text-muted">Headquarters</p>
                     </div>
                 </div>
@@ -1883,7 +1882,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                     <div class="info-icon"><i class="fas fa-phone"></i></div>
                     <div>
                         <h4>Phone</h4>
-                        <p>+966 1 234 5678</p>
+                        <p>+20 17 123 4567</p>
                         <p class="text-muted">Available 24/7</p>
                     </div>
                 </div>
@@ -2046,7 +2045,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 WaslaTech. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>&copy; 2024 WaslaTech. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
     </div>
 </footer>
@@ -2219,7 +2218,7 @@ class MobileMenu {
         this.btn.classList.toggle('active');
     }
     close() {
-        this.links.remove('active');
+        this.links.classList.remove('active');
         this.btn.classList.remove('active');
     }
 }
