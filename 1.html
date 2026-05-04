@@ -331,6 +331,142 @@ body.dark-mode .header {
     background: var(--surface);
 }
 
+/* ========== CART STYLES ========== */
+.cart-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--surface-sunken);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.cart-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--surface);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+}
+
+.cart-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    flex-direction: column;
+    z-index: 1001;
+    margin-top: var(--spacing-md);
+}
+
+.cart-dropdown.active { display: flex; }
+
+.cart-header {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.cart-items {
+    flex: 1;
+    padding: var(--spacing-md);
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-light);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.cart-item:last-child { border-bottom: none; }
+
+.cart-item-name { font-weight: 500; color: var(--text-primary); }
+
+.cart-item-price { color: var(--accent); font-weight: 600; }
+
+.cart-empty {
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.cart-footer {
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.cart-footer .btn { flex: 1; }
+
+/* ========== USER PROFILE SECTION ========== */
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.user-name {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 0 var(--spacing-md);
+}
+
+.logout-btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--error);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    transition: all var(--transition-fast);
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.hidden { display: none !important; }
+
 /* ========== HERO ========== */
 .hero {
     position: relative;
@@ -345,155 +481,105 @@ body.dark-mode .header {
 .hero::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -20%;
-    width: 60%;
-    height: 150%;
-    background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 60%);
     pointer-events: none;
-    animation: float 20s ease-in-out infinite;
-}
-
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 20%;
-    right: -10%;
-    width: 50%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.03) 0%, transparent 60%);
-    pointer-events: none;
-    animation: float 15s ease-in-out infinite reverse;
-}
-
-@keyframes float {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    33% { transform: translate(30px, -30px) rotate(5deg); }
-    66% { transform: translate(-20px, 20px) rotate(-5deg); }
 }
 
 .hero-content {
-    max-width: 900px;
-    margin: 0 auto;
     position: relative;
     z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    background: var(--surface-sunken);
-    border: 1px solid var(--border);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--radius-full);
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-xl);
-    animation: fadeInUp 0.6s ease-out both;
-}
-
-.hero-badge i { color: var(--accent); }
-
-.hero-title {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    color: var(--text-primary);
+.hero h1 {
+    font-size: var(--font-size-6xl);
     margin-bottom: var(--spacing-lg);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    animation: fadeInUp 0.6s ease-out 0.1s both;
+    animation: fadeInUp 0.8s ease-out;
 }
 
-.hero-subtitle {
+.hero p {
     font-size: var(--font-size-xl);
     color: var(--text-secondary);
     margin-bottom: var(--spacing-2xl);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-    animation: fadeInUp 0.6s ease-out 0.2s both;
+    animation: fadeInUp 0.8s ease-out 0.1s both;
 }
 
-.hero-actions {
+.hero-buttons {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeInUp 0.6s ease-out 0.3s both;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
-.hero-stats {
+.stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-xl);
-    max-width: 600px;
-    margin: var(--spacing-3xl) auto 0;
-    padding-top: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-4xl);
+    padding-top: var(--spacing-4xl);
     border-top: 1px solid var(--border);
-    animation: fadeInUp 0.6s ease-out 0.4s both;
 }
 
-.stat-item { text-align: center; }
+.stat-item {
+    text-align: center;
+}
+
 .stat-number {
     font-family: var(--font-display);
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-5xl);
     font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1;
+    color: var(--accent);
+    margin-bottom: var(--spacing-sm);
 }
+
 .stat-label {
-    font-size: var(--font-size-sm);
-    color: var(--text-muted);
-    margin-top: var(--spacing-xs);
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
-@media (max-width: 768px) {
-    .hero { padding: 120px var(--spacing-md) var(--spacing-3xl); }
-    .hero-title { font-size: var(--font-size-4xl); }
-    .hero-subtitle { font-size: var(--font-size-lg); }
-    .hero-actions { flex-direction: column; align-items: center; }
-    .hero-stats { grid-template-columns: 1fr; gap: var(--spacing-lg); }
+/* ========== SECTION HEADER ========== */
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-4xl);
 }
 
-/* ========== SECTIONS ========== */
-section { padding: var(--spacing-4xl) 0; }
-
-.section-header { text-align: center; max-width: 700px; margin: 0 auto var(--spacing-3xl); }
 .section-label {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-sm);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
     color: var(--accent);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: var(--spacing-md);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-lg);
 }
+
 .section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: var(--spacing-md);
-    letter-spacing: -0.02em;
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-lg);
 }
+
 .section-subtitle {
-    color: var(--text-secondary);
     font-size: var(--font-size-lg);
-    line-height: 1.7;
-    margin-bottom: 0;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 /* ========== ABOUT ========== */
-.about {
-    background: var(--surface-sunken);
-    position: relative;
-}
+.about { background: var(--surface-elevated); }
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: var(--spacing-4xl);
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
     align-items: start;
 }
 
@@ -998,7 +1084,6 @@ section { padding: var(--spacing-4xl) 0; }
 
 .info-item h4 {
     color: var(--text-primary);
-    margin-bottom: var(--spacing-xs);
     font-size: var(--font-size-lg);
 }
 
@@ -1172,8 +1257,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
     font-weight: 600;
     cursor: pointer;
 }
-
-.hidden { display: none !important; }
 
 /* ========== FOOTER ========== */
 .footer {
@@ -1393,111 +1476,90 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .animate-in-delay-4 { animation-delay: 0.4s; }
 .animate-in-delay-5 { animation-delay: 0.5s; }
 .animate-in-delay-6 { animation-delay: 0.6s; }
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 1024px) {
-    .container { padding: 0 var(--spacing-lg); }
-    section { padding: var(--spacing-3xl) 0; }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --font-size-5xl: 2.25rem;
-        --font-size-4xl: 1.875rem;
-        --font-size-3xl: 1.5rem;
-        --font-size-2xl: 1.25rem;
-    }
-
-    .plans-grid, .features-grid { grid-template-columns: 1fr; }
-    .section-title { font-size: var(--font-size-3xl); }
-}
-
-@media (max-width: 480px) {
-    :root {
-        --spacing-lg: 1rem;
-        --spacing-xl: 1.5rem;
-        --spacing-2xl: 2rem;
-    }
-
-    .container { padding: 0 var(--spacing-md); }
-    .btn { padding: var(--spacing-md) var(--spacing-lg); font-size: var(--font-size-sm); }
-    .hero-actions { flex-direction: column; }
-    .hero-actions .btn { width: 100%; }
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--surface-sunken); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: var(--radius-full); }
-::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-
-/* Focus Visible */
-:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
     </style>
 </head>
 <body>
 
 <!-- ===== HEADER ===== -->
 <header class="header">
-    <nav class="navbar container">
-        <a href="#home" class="navbar-brand">WaslaTech</a>
+    <div class="container">
+        <nav class="navbar">
+            <a href="#" class="navbar-brand">
+                <i class="fas fa-wifi"></i> WaslaTech
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#auth" class="nav-link">Login</a></li>
+            </ul>
 
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
+            <div class="header-actions">
+                <!-- SHOPPING CART BUTTON -->
+                <div style="position: relative;">
+                    <button class="cart-btn" id="cartBtn" title="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                    </button>
+                    <div class="cart-dropdown" id="cartDropdown">
+                        <div class="cart-header">Shopping Cart</div>
+                        <div class="cart-items" id="cartItems">
+                            <div class="cart-empty">Your cart is empty</div>
+                        </div>
+                        <div class="cart-footer">
+                            <button class="btn btn-secondary" onclick="clearCart()" style="flex: 1;">Clear</button>
+                            <button class="btn btn-primary" onclick="checkoutCart()" style="flex: 1;">Checkout</button>
+                        </div>
+                    </div>
+                </div>
 
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#founders" class="nav-link">Founders</a></li>
-            <li><a href="#services" class="nav-link">Services</a></li>
-            <li><a href="#features" class="nav-link">Features</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
+                <!-- USER PROFILE SECTION -->
+                <div class="user-section hidden" id="userSection">
+                    <span class="user-name" id="userName">User</span>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
 
-        <div class="header-actions">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            <a href="#auth" class="btn btn-primary">Login</a>
-        </div>
-    </nav>
+                <!-- THEME TOGGLE -->
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+
+                <!-- MOBILE MENU -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </div>
 </header>
 
 <!-- ===== HERO ===== -->
-<section id="home" class="hero">
+<section id="hero" class="hero">
     <div class="container">
         <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-bolt"></i>
-                Enterprise-Grade Telecom Solutions
+            <h1>Enterprise Connectivity Redefined</h1>
+            <p>Seamless, secure, and scalable telecom solutions for businesses worldwide. Connect with confidence.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary btn-lg" onclick="document.getElementById('auth').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-sign-in-alt"></i> Get Started
+                </button>
+                <button class="btn btn-secondary btn-lg" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-envelope"></i> Contact Sales
+                </button>
             </div>
-            <h1 class="hero-title">Connect Your Business with <span class="text-gradient">Unmatched Reliability</span></h1>
-            <p class="hero-subtitle">High-speed connectivity, dedicated support, and scalable infrastructure designed for modern enterprises ready to grow without limits.</p>
-            <div class="hero-actions">
-                <a href="#services" class="btn btn-primary btn-lg">View Plans</a>
-                <a href="#contact" class="btn btn-secondary btn-lg">Talk to Sales</a>
-            </div>
-            <div class="hero-stats">
+            <div class="stats">
                 <div class="stat-item">
                     <div class="stat-number">500+</div>
-                    <div class="stat-label">Enterprise Clients</div>
+                    <div class="stat-label">Corporate Clients</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">99.9%</div>
-                    <div class="stat-label">Uptime SLA</div>
+                    <div class="stat-label">Uptime Guarantee</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">50+</div>
@@ -1696,23 +1758,23 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                     <li><i class="fas fa-check"></i> 2 SIM Cards</li>
                     <li><i class="fas fa-check"></i> Multi-device Connectivity</li>
                 </ul>
-                <button class="btn btn-primary btn-block" onclick="selectPlan('Xpansion Plan', 'Complete Bundle')">Subscribe</button>
+                <button class="btn btn-primary btn-block" onclick="selectPlan('Xpansion Plan', 'Complete Package')">Subscribe Now</button>
             </div>
 
             <!-- Xclusive+ Plan -->
             <div class="plan-card animate-in animate-in-delay-4">
-                <div class="plan-icon"><i class="fas fa-users"></i></div>
+                <div class="plan-icon"><i class="fas fa-home"></i></div>
                 <h3 class="plan-name">Xclusive+</h3>
                 <div class="plan-price">
                     <span class="price-amount" style="font-size: var(--font-size-3xl);">Family</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> Shared Data Plans</li>
-                    <li><i class="fas fa-check"></i> Ideal for Families & Couples</li>
-                    <li><i class="fas fa-check"></i> Shared Usage Management</li>
-                    <li><i class="fas fa-check"></i> Cost-Effective Bundles</li>
+                    <li><i class="fas fa-check"></i> 1TB Data Pool</li>
+                    <li><i class="fas fa-check"></i> 5 Family Members</li>
+                    <li><i class="fas fa-check"></i> Shared Data Management</li>
+                    <li><i class="fas fa-check"></i> Premium Support</li>
                 </ul>
-                <button class="btn btn-secondary btn-block" onclick="selectPlan('Xclusive+ Plan', 'Family Bundle')">Subscribe</button>
+                <button class="btn btn-secondary btn-block" onclick="selectPlan('Xclusive+ Plan', 'Family Package')">Subscribe</button>
             </div>
 
             <!-- Xcape Plan -->
@@ -1723,79 +1785,99 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                     <span class="price-amount" style="font-size: var(--font-size-3xl);">Student</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 15GB Dedicated Data</li>
-                    <li><i class="fas fa-check"></i> Access to Edu Platforms</li>
-                    <li><i class="fas fa-check"></i> Discounted Rates</li>
-                    <li><i class="fas fa-check"></i> Student Verification Required</li>
+                    <li><i class="fas fa-check"></i> 50GB Data</li>
+                    <li><i class="fas fa-check"></i> Student Discount</li>
+                    <li><i class="fas fa-check"></i> Unlimited Messaging</li>
+                    <li><i class="fas fa-check"></i> Priority Support</li>
                 </ul>
-                <button class="btn btn-secondary btn-block" onclick="selectPlan('Xcape Plan', 'Student Plan')">Subscribe</button>
+                <button class="btn btn-secondary btn-block" onclick="selectPlan('Xcape Plan', 'Student Package')">Subscribe</button>
             </div>
         </div>
 
-        <!-- Hardware Products Section -->
+        <!-- Products Section -->
         <div class="product-section">
             <div class="section-header">
-                <h2 class="section-title">Hardware Products</h2>
-                <p class="section-subtitle">Shop our range of connectivity devices and accessories.</p>
+                <div class="section-label"><i class="fas fa-shopping-bag"></i> Products</div>
+                <h3 class="section-title">Add-on Products</h3>
+                <p class="section-subtitle">Enhance your connectivity with our premium add-ons and devices.</p>
             </div>
             <div class="product-grid">
-                <!-- SIM Cards -->
                 <div class="product-card animate-in animate-in-delay-1">
-                    <div class="product-image"><i class="fas fa-sim-card"></i></div>
-                    <h3 class="product-name">SIM Cards</h3>
-                    <p class="product-desc">Reliable and affordable network access.</p>
-                    <div class="product-price">From $1.99</div>
-                    <button class="btn btn-primary btn-block" onclick="addToCart('SIM Card', 1.99)">Add to Cart</button>
+                    <div class="product-image">📱</div>
+                    <h4 class="product-name">Premium Router</h4>
+                    <p class="product-desc">High-speed WiFi 6 router with extended range</p>
+                    <div class="product-price">$199</div>
+                    <button class="btn btn-secondary btn-block" onclick="addToCart('Premium Router', 199)">Add to Cart</button>
                 </div>
 
-                <!-- eSIMs -->
                 <div class="product-card animate-in animate-in-delay-2">
-                    <div class="product-image"><i class="fas fa-microchip"></i></div>
-                    <h3 class="product-name">eSIMs</h3>
-                    <p class="product-desc">Instant digital activation for travelers.</p>
-                    <div class="product-price">$10.99</div>
-                    <button class="btn btn-primary btn-block" onclick="addToCart('eSIM', 10.99)">Add to Cart</button>
+                    <div class="product-image">🎧</div>
+                    <h4 class="product-name">Wireless Earbuds</h4>
+                    <p class="product-desc">Crystal clear audio with noise cancellation</p>
+                    <div class="product-price">$89</div>
+                    <button class="btn btn-secondary btn-block" onclick="addToCart('Wireless Earbuds', 89)">Add to Cart</button>
                 </div>
 
-                <!-- Portable Hotspots -->
                 <div class="product-card animate-in animate-in-delay-3">
-                    <div class="product-image"><i class="fas fa-hotdog"></i></div>
-                    <h3 class="product-name">Portable Hotspots</h3>
-                    <p class="product-desc">Compact, on-the-go internet devices.</p>
-                    <div class="product-price">$5.99</div>
-                    <button class="btn btn-primary btn-block" onclick="addToCart('Portable Hotspot', 5.99)">Add to Cart</button>
+                    <div class="product-image">⌚</div>
+                    <h4 class="product-name">Smart Watch</h4>
+                    <p class="product-desc">Stay connected with cellular connectivity</p>
+                    <div class="product-price">$299</div>
+                    <button class="btn btn-secondary btn-block" onclick="addToCart('Smart Watch', 299)">Add to Cart</button>
                 </div>
 
-                <!-- Fixed Routers -->
                 <div class="product-card animate-in animate-in-delay-4">
-                    <div class="product-image"><i class="fas fa-wifi"></i></div>
-                    <h3 class="product-name">Fixed Routers</h3>
-                    <p class="product-desc">High-speed, secure solutions for homes.</p>
-                    <div class="product-price">$30.99</div>
-                    <button class="btn btn-primary btn-block" onclick="addToCart('Fixed Router', 30.99)">Add to Cart</button>
+                    <div class="product-image">🔋</div>
+                    <h4 class="product-name">Power Bank</h4>
+                    <p class="product-desc">50000mAh capacity with fast charging</p>
+                    <div class="product-price">$49</div>
+                    <button class="btn btn-secondary btn-block" onclick="addToCart('Power Bank', 49)">Add to Cart</button>
+                </div>
+
+                <div class="product-card animate-in animate-in-delay-5">
+                    <div class="product-image">🛡️</div>
+                    <h4 class="product-name">Device Protection</h4>
+                    <p class="product-desc">Comprehensive coverage for 2 years</p>
+                    <div class="product-price">$79</div>
+                    <button class="btn btn-secondary btn-block" onclick="addToCart('Device Protection', 79)">Add to Cart</button>
+                </div>
+
+                <div class="product-card animate-in animate-in-delay-6">
+                    <div class="product-image">🌐</div>
+                    <h4 class="product-name">Global SIM</h4>
+                    <p class="product-desc">Use in 200+ countries with local rates</p>
+                    <div class="product-price">$29</div>
+                    <button class="btn btn-secondary btn-block" onclick="addToCart('Global SIM', 29)">Add to Cart</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-
 <!-- ===== CONTACT ===== -->
 <section id="contact" class="contact">
     <div class="container">
         <div class="section-header">
-            <div class="section-label"><i class="fas fa-envelope"></i> Contact</div>
-            <h2 class="section-title">Get in Touch</h2>
+            <div class="section-label"><i class="fas fa-envelope"></i> Get in Touch</div>
+            <h2 class="section-title">Contact Us</h2>
             <p class="section-subtitle">Have questions? Our team is ready to help you find the perfect solution.</p>
         </div>
         <div class="contact-wrapper">
             <div class="contact-info">
                 <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4>Address</h4>
+                        <p>123 Tech Boulevard, Innovation City, IC 12345</p>
+                        <p class="text-muted">Headquarters</p>
+                    </div>
+                </div>
+                <div class="info-item">
                     <div class="info-icon"><i class="fas fa-phone"></i></div>
                     <div>
                         <h4>Phone</h4>
-                        <p>+20 1727877650</p>
-                        <span class="text-muted">Available 24/7 for enterprise clients</span>
+                        <p>+966 1 234 5678</p>
+                        <p class="text-muted">Available 24/7</p>
                     </div>
                 </div>
                 <div class="info-item">
@@ -1803,15 +1885,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                     <div>
                         <h4>Email</h4>
                         <p>WaslaTech.Telecom@Gmail.com</p>
-                        <span class="text-muted">Response within 2 hours</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div>
-                        <h4>Headquarters</h4>
-                        <p>Smart Village, Cairo, Egypt</p>
-                        <span class="text-muted">Regional offices worldwide</span>
+                        <p class="text-muted">We reply within 2 hours</p>
                     </div>
                 </div>
             </div>
@@ -1819,31 +1893,31 @@ textarea.form-input { resize: vertical; min-height: 120px; }
             <form class="contact-form" id="contactForm">
                 <div class="form-group">
                     <label for="cName">Full Name</label>
-                    <input type="text" id="cName" required placeholder="Your full name" class="form-input">
+                    <input type="text" id="cName" class="form-input" placeholder="Your name">
                     <span class="error-message" id="nameError"></span>
                 </div>
                 <div class="form-group">
-                    <label for="cCompany">Company Name</label>
-                    <input type="text" id="cCompany" required placeholder="Your company" class="form-input">
+                    <label for="cCompany">Company</label>
+                    <input type="text" id="cCompany" class="form-input" placeholder="Your company">
                     <span class="error-message" id="companyError"></span>
                 </div>
                 <div class="form-group">
                     <label for="cEmail">Email Address</label>
-                    <input type="email" id="cEmail" required placeholder="you@company.com" class="form-input">
+                    <input type="email" id="cEmail" class="form-input" placeholder="your@email.com">
                     <span class="error-message" id="emailError"></span>
                 </div>
                 <div class="form-group">
                     <label for="cPhone">Phone Number</label>
-                    <input type="tel" id="cPhone" required placeholder="+966 1 234 5678" class="form-input">
+                    <input type="tel" id="cPhone" class="form-input" placeholder="+1 (555) 000-0000">
                     <span class="error-message" id="phoneError"></span>
                 </div>
                 <div class="form-group">
                     <label for="cMessage">Message</label>
-                    <textarea id="cMessage" required placeholder="Tell us about your connectivity needs..." rows="4" class="form-input"></textarea>
+                    <textarea id="cMessage" class="form-input" placeholder="Tell us about your needs..."></textarea>
                     <span class="error-message" id="messageError"></span>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
-                <p class="form-note">We will get back to you within 24 hours</p>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Send Message</button>
+                <p class="form-note">We'll get back to you within 24 hours.</p>
             </form>
         </div>
     </div>
@@ -1853,9 +1927,9 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 <section id="auth" class="auth-section">
     <div class="container">
         <div class="section-header">
-            <div class="section-label"><i class="fas fa-user"></i> Account</div>
-            <h2 class="section-title">Manage Your Account</h2>
-            <p class="section-subtitle">Login or create a new WaslaTech account to access your dashboard.</p>
+            <div class="section-label"><i class="fas fa-lock"></i> Account</div>
+            <h2 class="section-title">Login or Sign Up</h2>
+            <p class="section-subtitle">Access your WaslaTech account or create a new one to get started.</p>
         </div>
 
         <div class="auth-box">
@@ -1868,54 +1942,55 @@ textarea.form-input { resize: vertical; min-height: 120px; }
                 </button>
             </div>
 
+            <!-- Login Card -->
             <div class="auth-card" id="loginCard">
-                <h3>Welcome back</h3>
-                <p class="card-subtitle">Sign in to your WaslaTech account</p>
+                <h3>Welcome Back</h3>
+                <p class="card-subtitle">Sign in to your account to continue</p>
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="loginEmail">Email Address</label>
-                        <input type="email" id="loginEmail" class="form-input" placeholder="you@company.com" required>
+                        <input type="email" id="loginEmail" class="form-input" placeholder="your@email.com">
                         <span class="error-message" id="loginEmailError"></span>
                     </div>
                     <div class="form-group">
                         <label for="loginPassword">Password</label>
-                        <input type="password" id="loginPassword" class="form-input" placeholder="Your password" required>
+                        <input type="password" id="loginPassword" class="form-input" placeholder="••••••••">
                         <span class="error-message" id="loginPasswordError"></span>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Sign In</button>
                 </form>
-                <hr class="auth-divider">
-                <p class="auth-link-row">Don't have an account? <a onclick="switchAuthTab('signup')">Sign up for free</a></p>
+                <div class="auth-link-row">
+                    <a href="#">Forgot password?</a>
+                </div>
             </div>
 
+            <!-- Signup Card -->
             <div class="auth-card hidden" id="signupCard">
-                <h3>Create an account</h3>
-                <p class="card-subtitle">Join WaslaTech and get connected today</p>
+                <h3>Create Account</h3>
+                <p class="card-subtitle">Join WaslaTech today</p>
                 <form id="signupForm">
                     <div class="form-group">
                         <label for="signupName">Full Name</label>
-                        <input type="text" id="signupName" class="form-input" placeholder="Your full name" required>
+                        <input type="text" id="signupName" class="form-input" placeholder="Your name">
                         <span class="error-message" id="signupNameError"></span>
                     </div>
                     <div class="form-group">
                         <label for="signupEmail">Email Address</label>
-                        <input type="email" id="signupEmail" class="form-input" placeholder="you@company.com" required>
+                        <input type="email" id="signupEmail" class="form-input" placeholder="your@email.com">
                         <span class="error-message" id="signupEmailError"></span>
                     </div>
                     <div class="form-group">
                         <label for="signupPassword">Password</label>
-                        <input type="password" id="signupPassword" class="form-input" placeholder="Min. 6 chars, 1 uppercase, 1 number" required>
+                        <input type="password" id="signupPassword" class="form-input" placeholder="••••••••">
                         <span class="error-message" id="signupPasswordError"></span>
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" class="form-input" placeholder="Repeat your password" required>
+                        <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••">
                         <span class="error-message" id="confirmPasswordError"></span>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block btn-lg">Create Account</button>
                 </form>
-                <hr class="auth-divider">
-                <p class="auth-link-row">Already have an account? <a onclick="switchAuthTab('login')">Login here</a></p>
             </div>
         </div>
     </div>
@@ -1927,74 +2002,164 @@ textarea.form-input { resize: vertical; min-height: 120px; }
         <div class="footer-content">
             <div class="footer-section">
                 <div class="footer-brand">WaslaTech</div>
-                <p>Enterprise telecom solutions connecting businesses worldwide with reliability and innovation.</p>
+                <p>Enterprise telecom solutions for businesses worldwide.</p>
                 <div class="social-links">
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             <div class="footer-section">
-                <h4>Quick Links</h4>
+                <h4>Product</h4>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
                     <li><a href="#services">Plans</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#services">Products</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#founders">Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Support</h4>
                 <ul>
+                    <li><a href="#contact">Contact</a></li>
                     <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">Status Page</a></li>
-                    <li><a href="#">Contact Support</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Security</a></li>
-                    <li><a href="#">Compliance</a></li>
+                    <li><a href="#">Status</a></li>
+                    <li><a href="#">Privacy</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>2026 WaslaTech. All rights reserved. Connecting businesses worldwide.</p>
+            <p>&copy; 2024 WaslaTech. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
     </div>
 </footer>
 
 <!-- ===== CHATBOT ===== -->
+<button class="chat-toggle" id="chatToggle" onclick="toggleChat()" title="Chat with us">
+    <i class="fas fa-comments"></i>
+</button>
+
 <div class="chatbot-container" id="chatbot">
     <div class="chat-header">
-        <span>WaslaTech Assistant</span>
-        <i class="fas fa-times" onclick="toggleChat()"></i>
+        <span>WaslaTech Support</span>
+        <i class="fas fa-times" onclick="toggleChat()" style="cursor: pointer;"></i>
     </div>
     <div class="chat-body" id="chatBody">
-        <div class="chat-message bot">Hello! I'm WaslaTech Assistant. How can I help you today?</div>
+        <div class="chat-message bot">Hello! How can we help you today?</div>
     </div>
     <div class="chat-footer">
-        <input type="text" id="chatInput" placeholder="Type a message..." />
-        <button onclick="sendMessage()">Send <i class="fas fa-paper-plane"></i></button>
+        <input type="text" id="chatInput" placeholder="Type your message...">
+        <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
     </div>
 </div>
-<button class="chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
 
-<!-- ===== JAVASCRIPT ===== -->
 <script>
-/* ---- THEME ---- */
+/* ========== CART MANAGEMENT ========== */
+let cart = JSON.parse(localStorage.getItem('waslatechCart')) || [];
+
+function updateCartUI() {
+    const badge = document.getElementById('cartBadge');
+    const itemsContainer = document.getElementById('cartItems');
+    
+    if (cart.length === 0) {
+        badge.style.display = 'none';
+        itemsContainer.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+    } else {
+        badge.textContent = cart.length;
+        badge.style.display = 'flex';
+        itemsContainer.innerHTML = cart.map((item, index) => `
+            <div class="cart-item">
+                <div>
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">$${item.price}</div>
+                </div>
+                <button style="background: none; border: none; color: var(--error); cursor: pointer; font-size: 1.2rem;" onclick="removeFromCart(${index})" title="Remove">×</button>
+            </div>
+        `).join('');
+    }
+    localStorage.setItem('waslatechCart', JSON.stringify(cart));
+}
+
+function addToCart(product, price) {
+    cart.push({ name: product, price: price });
+    updateCartUI();
+    alert(`✓ Added "${product}" to cart!`);
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function clearCart() {
+    if (confirm('Clear all items from cart?')) {
+        cart = [];
+        updateCartUI();
+    }
+}
+
+function checkoutCart() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    alert(`Proceeding to checkout with ${cart.length} item(s) totaling $${total}`);
+    cart = [];
+    updateCartUI();
+}
+
+document.getElementById('cartBtn').addEventListener('click', function() {
+    document.getElementById('cartDropdown').classList.toggle('active');
+});
+
+document.addEventListener('click', function(e) {
+    const cartBtn = document.getElementById('cartBtn');
+    const cartDropdown = document.getElementById('cartDropdown');
+    if (!e.target.closest('.cart-btn') && !e.target.closest('.cart-dropdown')) {
+        cartDropdown.classList.remove('active');
+    }
+});
+
+/* ========== USER AUTHENTICATION ========== */
+let currentUser = JSON.parse(localStorage.getItem('waslatechUser')) || null;
+
+function updateUserUI() {
+    const userSection = document.getElementById('userSection');
+    const userName = document.getElementById('userName');
+    
+    if (currentUser) {
+        userSection.classList.remove('hidden');
+        userName.textContent = currentUser.name;
+    } else {
+        userSection.classList.add('hidden');
+    }
+}
+
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        currentUser = null;
+        localStorage.removeItem('waslatechUser');
+        updateUserUI();
+        alert('You have been logged out successfully!');
+    }
+}
+
+/* ========== THEME MANAGEMENT ========== */
 class ThemeManager {
     constructor() {
+        this.key = 'waslatechTheme';
         this.btn = document.getElementById('themeToggle');
-        this.key = 'waslatech-theme';
-        this.init();
-    }
-    init() {
         const saved = localStorage.getItem(this.key);
         if (saved === 'dark') {
             this.dark();
@@ -2047,7 +2212,7 @@ class MobileMenu {
         this.btn.classList.toggle('active');
     }
     close() {
-        this.links.classList.remove('active');
+        this.links.remove('active');
         this.btn.classList.remove('active');
     }
 }
@@ -2130,12 +2295,20 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     clearErrors();
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
+    const name = email.split('@')[0];
     let valid = true;
 
     if (!email || !isEmail(email)) { showError('loginEmailError', 'Enter a valid email address'); valid = false; }
     if (!password || password.length < 6) { showError('loginPasswordError', 'Password must be at least 6 characters'); valid = false; }
 
-    if (valid) { alert('Login successful! Welcome back to WaslaTech.'); this.reset(); }
+    if (valid) {
+        currentUser = { name: name, email: email };
+        localStorage.setItem('waslatechUser', JSON.stringify(currentUser));
+        updateUserUI();
+        alert('Login successful! Welcome back to WaslaTech.');
+        this.reset();
+        document.getElementById('auth').scrollIntoView({ behavior: 'smooth' });
+    }
 });
 
 /* ---- SIGNUP FORM ---- */
@@ -2155,7 +2328,14 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     else if (!/[0-9]/.test(password)) { showError('signupPasswordError', 'Must contain at least one number'); valid = false; }
     if (password !== confirm) { showError('confirmPasswordError', 'Passwords do not match'); valid = false; }
 
-    if (valid) { alert('Account created! Check your email to verify.'); this.reset(); switchAuthTab('login'); }
+    if (valid) {
+        currentUser = { name: name, email: email };
+        localStorage.setItem('waslatechUser', JSON.stringify(currentUser));
+        updateUserUI();
+        alert('Account created! Welcome to WaslaTech.');
+        this.reset();
+        switchAuthTab('login');
+    }
 });
 
 /* ---- AUTH TABS ---- */
@@ -2171,11 +2351,6 @@ function switchAuthTab(tab) {
 function selectPlan(name, price) {
     alert('You selected the ' + name + ' (' + price + '). Redirecting to contact form.');
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-}
-
-/* ---- SHOPPING CART (Basic Alert Simulation) ---- */
-function addToCart(product, price) {
-    alert('Added ' + product + ' ($' + price + ') to cart! (Demo Function)');
 }
 
 /* ---- CHATBOT ---- */
@@ -2224,6 +2399,8 @@ document.addEventListener('DOMContentLoaded', function() {
     new ThemeManager();
     new MobileMenu();
     new ScrollAnimator();
+    updateCartUI();
+    updateUserUI();
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
